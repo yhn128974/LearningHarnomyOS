@@ -1,5 +1,10 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/ClassOnline/day03/StudyPage",
+    "pages/ClassOnline/day03/meituan/MeiTuan",
+    "pages/ClassOnline/day03/baidu/baidu",
+    "pages/Class/day01/ScrollPage",
+    "pages/Class/day01/BadgeTest"
   ]
 }
