@@ -2,20 +2,21 @@
 @Component
 struct ScrollCase02 {
   @State message: string = 'Hello World';
-  scroller:Scroller = new Scroller()
+  scroller: Scroller = new Scroller()
+
+  @State num1:number = 1;
 
   build() {
     Row() {
       Column() {
         Scroll(this.scroller) {
           Row({
-            space:10
-          }){
+            space: 10
+          }) {
             ForEach(Array.from({ length: 10 }), () => {
               ScrollCase()
             })
           }
-
         }.scrollable(ScrollDirection.Horizontal)
 
         Row() {
@@ -26,12 +27,21 @@ struct ScrollCase02 {
             this.scroller.scrollEdge(Edge.End)
           })
         }.justifyContent(FlexAlign.SpaceBetween).width('100%')
+
+        // DatePicker()
+        // TimePicker()
       }
       .width('100%')
     }
     .height('100%')
   }
+
+  @Styles conmentstyle(){
+    .width(this.num1)
+  }
 }
+
+
 
 @Component
 struct ScrollCase {
