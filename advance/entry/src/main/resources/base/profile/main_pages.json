@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/ClassOnline/day03/StudyPage",
     "pages/ClassOnline/day03/meituan/MeiTuan",
-    "pages/ClassOnline/day03/baidu/baidu"
+    "pages/ClassOnline/day03/baidu/baidu",
+    "pages/ClassOnline/day04/ScrollCase02"
   ]
 }

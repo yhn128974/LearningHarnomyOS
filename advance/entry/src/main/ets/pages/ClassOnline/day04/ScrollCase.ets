@@ -48,12 +48,12 @@ struct Index {
             ScrollItem()
           })
         }
-      }.width('100%')
+      }
+      .width('100%')
       .backgroundColor(Color.Orange)
       .height(this.middleHeights)
       .middleSDnamicStyle()
       .scrollBarColor(Color.Yellow)
-
       Row().width('100%').height(50).backgroundColor(Color.Blue)
         .onClick(() => {
           this.scroller
@@ -62,11 +62,7 @@ struct Index {
             //   yOffset: 100
             // })
             .scrollEdge(Edge.Bottom)
-
-
         })
-
-
     }
     .width('100%').height('100%')
     .onAreaChange((oldValue: Area, newValue: Area) => {
