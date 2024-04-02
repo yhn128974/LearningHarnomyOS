@@ -34,7 +34,6 @@ struct Index {
 
   build() {
     Tabs({ barPosition: BarPosition.End }) {
-
       ForEach(this.tabInfomation, (item: tabinfoInterFace, index: number) => {
         TabContent() {
           Column() {
@@ -50,9 +49,10 @@ struct Index {
     .width('100%')
     .height('100%')
     .onTabBarClick((index: number) => {
-      console.log(""+index)
+      console.log("" + index)
       this.currentIndex = index
     })
+
     // .onChange((index: number) => {
     //   console.log(""+index)
     //   this.currentIndex = index
@@ -62,12 +62,8 @@ struct Index {
   @Builder
   tabBuilder(title: string, index: number, selectedImgeName: string, normalImgeName: string) {
     Column() {
-
-      // Image($r('app.media.')).width(25)
-
-      // Image(this.currentIndex === index ? $r(`app.media.${selectedImgeName}`) : $r(`app.media.${normalImgeName}`))
-      //   .size({ width: 25, height: 25 })
-
+      Image(this.currentIndex === index ? $r(`app.media.${selectedImgeName}`) : $r(`app.media.${normalImgeName}`))
+        .size({ width: 25, height: 25 })
       Text(title)
         .fontColor(this.currentIndex === index ? '#1698CE' : '#6B6B6B')
     }
