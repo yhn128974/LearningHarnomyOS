@@ -6,6 +6,11 @@
     "pages/ClassOnline/day03/baidu/baidu",
     "pages/ClassOnline/day04/ScrollCase02",
     "pages/ClassOnline/day04/MVVMPage",
-    "pages/Class/day03/answer/Index_template"
+    "pages/Class/day03/answer/Index_template",
+    "pages/Class/day03/bindSheetPage",
+    "pages/Class/day03/ListItemGroupCase",
+    "pages/ClassOnline/day05/layoutWeightAndAspectRatio",
+    "pages/ClassOnline/day05/ImageCase",
+    "pages/ClassOnline/day05/HTTPCase"
   ]
 }

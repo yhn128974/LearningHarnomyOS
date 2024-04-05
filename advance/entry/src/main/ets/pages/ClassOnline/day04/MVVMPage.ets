@@ -31,7 +31,6 @@ struct MVVMPage {
           Search({
             value: $$this.SearchText
           })
-
         }
       }.height(200).backgroundColor(Color.Pink)
 
@@ -66,7 +65,7 @@ struct MVVMPage {
 
       GridItem() {
         Column() {
-        PatternLock()
+          PatternLock()
         }
       }.height(200).backgroundColor(Color.Pink)
 
