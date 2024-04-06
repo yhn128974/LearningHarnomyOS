@@ -11,6 +11,8 @@
     "pages/Class/day03/ListItemGroupCase",
     "pages/ClassOnline/day05/layoutWeightAndAspectRatio",
     "pages/ClassOnline/day05/ImageCase",
-    "pages/ClassOnline/day05/HTTPCase"
+    "pages/ClassOnline/day05/HTTPCase",
+    "pages/Class/day04/WaterFlowCase",
+    "pages/Class/day04/animateToCase01"
   ]
 }
