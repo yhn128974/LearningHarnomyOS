@@ -15,6 +15,8 @@
     "pages/Class/day04/WaterFlowCase",
     "pages/Class/day04/animateToCase01",
     "pages/ClassOnline/day06/ExtendsCase",
-    "pages/ClassOnline/day07/Loading"
+    "pages/ClassOnline/day07/Loading",
+    "pages/ClassOnline/day07/ForEashCase",
+    "pages/ClassOnline/day07/ForEachGoodCase"
   ]
 }
