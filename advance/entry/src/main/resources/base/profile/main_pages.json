@@ -13,6 +13,8 @@
     "pages/ClassOnline/day05/ImageCase",
     "pages/ClassOnline/day05/HTTPCase",
     "pages/Class/day04/WaterFlowCase",
-    "pages/Class/day04/animateToCase01"
+    "pages/Class/day04/animateToCase01",
+    "pages/ClassOnline/day06/ExtendsCase",
+    "pages/ClassOnline/day07/Loading"
   ]
 }

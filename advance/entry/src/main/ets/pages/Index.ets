@@ -8,12 +8,13 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        Button('点击跳转').onClick((event: ClickEvent) => {
-          router.pushUrl({ url: 'pages/ClassOnline/day05/HTTPCase' })
-        })
+        Scroll(){
+          Button('点击跳转').onClick((event: ClickEvent) => {
+            router.pushUrl({ url:'pages/ClassOnline/day07/Loading'})
+          })
+        }
+
+
       }
       .width('100%')
     }
