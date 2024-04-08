@@ -16,20 +16,22 @@ struct ForEashCase {
     Row() {
       Column() {
         List() {
-          ForEach(this.MyWorkExpressionModel,(item:WorkExpressionModel,index:number)=>{
-            ListItem(){
+          ForEach(this.MyWorkExpressionModel, (item: WorkExpressionModel, index: number) => {
+            ListItem() {
               Column({
-                space:10
-              }){
-
+                space: 10
+              }) {
                 Text(item.companyName)
                   .fontSize(30)
                   .fontWeight(FontWeight.Bold).width('100%')
-                Text(item.workDate.toString()).maxLines(1).textOverflow({
-                  overflow: TextOverflow.Ellipsis
-                })
+                Text(item.workDate.toString())
+                  .maxLines(1)
+                  .textOverflow({
+                    overflow: TextOverflow.Ellipsis
+                  })
                   .fontSize(30)
-                  .fontWeight(FontWeight.Bold).width('100%')
+                  .fontWeight(FontWeight.Bold)
+                  .width('100%')
                 Text(item.workSalary)
                   .fontSize(30)
                   .fontWeight(FontWeight.Bold).width('100%')
@@ -40,7 +42,6 @@ struct ForEashCase {
                   .fontSize(30)
                   .fontWeight(FontWeight.Bold).width('100%')
               }
-
             }
           })
 

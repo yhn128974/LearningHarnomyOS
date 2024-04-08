@@ -1,4 +1,6 @@
 import { GoodItemModel } from './moduls'
+import { SegmentButton, SegmentButtonOptions } from '@kit.ArkUI';
+import { ItemRestriction, SegmentButtonTextItem } from '@ohos.arkui.advanced.SegmentButton';
 
 @Entry
 @Component
@@ -52,38 +54,72 @@ struct ForEachGoodCase {
       },
     )
   ]
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '单列' }, { text: '双列' }],
+  })
+  @State tabSelectedIndexes: number[] = [0]
 
   build() {
     Row() {
       Column() {
-        List({
-          space: 10
-        }) {
-          ForEach(this.GoodItemModelInformation, (item: GoodItemModel, index: number) => {
-            ListItem() {
-              Row() {
-                Image($r(item.goods_img.toString())).height(150).width(100).borderRadius(10)
+
+        SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
+
+        if (this.tabSelectedIndexes.includes(0)) {
+          List({
+            space: 10
+          }) {
+            ForEach(this.GoodItemModelInformation, (item: GoodItemModel, index: number) => {
+              ListItem() {
+                Row() {
+                  Image($r(item.goods_img.toString())).height(150).width(100).borderRadius(10)
+                  Column() {
+                    Text(item.goods_name).width('100%')
+                    Row() {
+                      Text(item.goods_price.toString()).fontColor(Color.Red)
+                      Text(`*${item.goods_count.toString()}`)
+                    }.width('100%').justifyContent(FlexAlign.SpaceBetween)
+                  }
+                  .justifyContent(FlexAlign.SpaceBetween)
+                  .layoutWeight(1)
+                  .padding({
+                    left: 10,
+                    right: 10
+                  })
+                  .width('100%')
+                  .height('100%')
+
+                }.height(150)
+              }
+            })
+          }.padding(10)
+        } else if (this.tabSelectedIndexes.includes(1)) {
+          Grid() {
+            ForEach(this.GoodItemModelInformation, (item: GoodItemModel, index: number) => {
+              GridItem() {
                 Column() {
-                  Text(item.goods_name).width('100%')
-                  Row() {
-                    Text(item.goods_price.toString()).fontColor(Color.Red)
-                    Text(`*${item.goods_count.toString()}`)
-                  }.width('100%').justifyContent(FlexAlign.SpaceBetween)
+                  Image($r(item.goods_img.toString())).borderRadius(10).height(200)
+                  Column() {
+                    Text(item.goods_name).width('100%').maxLines(1).textOverflow({
+                      overflow: TextOverflow.Ellipsis
+                    }).fontWeight(FontWeight.Bold)
+                    Row() {
+                      Text(`￥${item.goods_price.toString()}`).fontColor(Color.Red)
+                      Text(`*${item.goods_count.toString()}`)
+                    }.width('100%').justifyContent(FlexAlign.SpaceBetween)
+                  }
+                  .justifyContent(FlexAlign.SpaceBetween)
+                  .padding({
+                    left: 10,
+                    right: 10
+                  })
                 }
-                .justifyContent(FlexAlign.SpaceBetween)
-                .layoutWeight(1)
-                .padding({
-                  left: 10,
-                  right: 10
-                })
-                .width('100%')
-                .height('100%')
+              }
+            })
 
-              }.height(150)
-            }
-          })
+          }.padding(10).columnsTemplate('1fr 1fr').columnsGap(10).rowsGap(10)
+        }
 
-        }.padding(10)
 
       }
       .width('100%')
