@@ -62,9 +62,7 @@ struct ForEachGoodCase {
   build() {
     Row() {
       Column() {
-
         SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
-
         if (this.tabSelectedIndexes.includes(0)) {
           List({
             space: 10
