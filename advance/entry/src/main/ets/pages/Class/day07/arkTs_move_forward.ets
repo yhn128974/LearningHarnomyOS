@@ -182,11 +182,54 @@ y = x! + 1; //可以 告诉编译器我这个x必不为空
 // 空值合并运算符
 class Person02 {
   name: string | null = null;
+
   getName(): string {
     // return this.name!=null ? this.name:''
     return this.name ?? ''
   }
 }
+
+class Person05 {
+  static name01: string = 'alice'
+  static age: number = 20
+}
+
+let p5 = new Person05()
+Person05.name01
+
+// p5.name01 //不可以通过实例化对象访问静态属性
+
+
+class Person06 {
+  name: string
+  age: number
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  getname() {
+    console.log(this.name)
+  }
+}
+
+class Person07 extends Person06 {
+  address: string
+
+  constructor(name: string, age: number, address: string) {
+    super(name, age)
+    this.address = address
+  }
+
+  getname() {
+    super.getname()
+  }
+
+
+}
+let p7=new Person07('Jack',30,'NEWYORK')
+console.log(p7.name)
+
 
 
 

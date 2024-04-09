@@ -1,14 +1,14 @@
-import { zhifuModel } from '../moduls/ZhiHu'
+import { zhifu} from '../moduls/ZhiHu'
 
 
 @Preview
 @Component
 export struct ZhiHuContent {
-  @Prop commentItem: zhifuModel
+  @Prop commentItem: zhifu
 
   build() {
     Row() {
-      Image($r(this.commentItem.ImageUrl)).width(40).height(40).borderRadius(15).margin({
+      Image($r(this.commentItem.ImageUrl as string)).width(40).height(40).borderRadius(15).margin({
         top: 10
       })
       Column({
@@ -17,9 +17,11 @@ export struct ZhiHuContent {
         Row() {
           Text(this.commentItem.name).fontWeight(600)
         }.width('100%')
+
         Row() {
           Text(this.commentItem.text)
         }.width('100%')
+
         Row() {
           Row() {
             Text(new Date().getDate().toString()).fontSize(12).fontColor('#DDD')
@@ -27,7 +29,12 @@ export struct ZhiHuContent {
           }
 
           Row() {
-            Image($r('app.media.24gf_heart')).width(12)
+            Image($r('app.media.24gf_heart'))
+              .width(12)
+              .fillColor(this.commentItem.likeFlage ? Color.Red : '#DDD')
+              .onClick(() => {
+                this.commentItem.likeFlage = !this.commentItem.likeFlage
+              })
             Text(this.commentItem.dainzhanshu.toString()).fontSize(12).fontColor('#DDD')
           }
         }.width('100%').justifyContent(FlexAlign.SpaceBetween)
@@ -36,7 +43,7 @@ export struct ZhiHuContent {
     .justifyContent(FlexAlign.Start)
     .border({
       width: {
-        bottom: 1
+        top: 1
       },
       style: BorderStyle.Solid,
       color: '#ddd'
