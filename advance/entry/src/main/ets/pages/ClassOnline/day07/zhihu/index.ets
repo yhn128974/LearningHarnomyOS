@@ -9,7 +9,16 @@ import { promptAction } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
+  scroller: Scroller = new Scroller()
   @State message: string = 'Hello World';
+  @State currrentInformation: zhifuModel = new zhifuModel({
+    ImageUrl: 'app.media.ic_01_1',
+    name: '周杰伦',
+    text: '实打实大阿达大大阿萨法水电费地方顺丰到付水电费第三方',
+    address: '北京',
+    dainzhanshu: 100,
+    likeFlage: false
+  });
   @State zhifuModelInfomation: zhifuModel[] = [
     new zhifuModel({
       ImageUrl: 'app.media.ic_01_1',
@@ -59,8 +68,6 @@ struct Index {
       dainzhanshu: 100,
       likeFlage: false
     }),
-
-
   ]
 
   changeLike(item: zhifu) {
@@ -79,22 +86,61 @@ struct Index {
     //   message: '父组件的方法被调佣了'
     // })
     // console.log("" + this.zhifuModelInfomation.length)
+
+
+  }
+
+  AddItem(text: string) {
+    this.zhifuModelInfomation.unshift(
+      new zhifuModel({
+        ImageUrl: 'app.media.ic_01_1',
+        name: `周杰伦${this.zhifuModelInfomation.length}`,
+        text: text,
+        address: '北京',
+        dainzhanshu: 100,
+        likeFlage: false
+      }),)
+    this.scroller.scrollEdge(Edge.Top)
+  }
+
+  changeCurrentLike(item: zhifu) {
+    item.likeFlage = !item.likeFlage
+    if (item.likeFlage) {
+      item.dainzhanshu++
+    } else {
+      item.dainzhanshu--
+    }
+    this.currrentInformation = new zhifuModel(item)
+
+    // promptAction.showToast({
+    //   message: '父组件的方法被调佣了'
+    // })
+    // console.log("" + this.zhifuModelInfomation.length)
+
+
   }
 
   build() {
     Row() {
       Column() {
         ZhiFuHeader()
-        ZhiHuContent({ commentItem: this.zhifuModelInfomation[0] })
+
+        ZhiHuContent({
+          commentItem: this.currrentInformation
+        , test: () => {
+            this.changeCurrentLike(this.currrentInformation)
+          }
+        })
+
         // Divider分隔器
         Divider().strokeWidth(3)
         Row() {
           Text(`评论${this.zhifuModelInfomation.length}`).fontColor('f1f2f3')
         }.width('100%').padding(10)
 
-        List() {
+        List({ scroller: this.scroller }) {
           ForEach(this.zhifuModelInfomation,
-            (item: zhifuModel, inex: number) => {
+            (item: zhifuModel) => {
               ListItem() {
                 ZhiHuContent({
                   commentItem: item,
@@ -109,7 +155,14 @@ struct Index {
             })
         }.layoutWeight(1)
 
-        ZhihuReplay()
+        ZhihuReplay({
+          // 子组件的函数
+          AddItem: (text: string) => {
+            //   父组件的函数
+            this.AddItem(text)
+
+          }
+        })
       }
       .width('100%')
     }
