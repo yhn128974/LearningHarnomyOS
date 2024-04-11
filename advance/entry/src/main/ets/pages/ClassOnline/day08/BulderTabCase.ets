@@ -3,6 +3,16 @@ interface TabBarInfo {
   title: string;
   url: ResourceStr
 }
+//全局Builder无法实现状态更新
+// @Builder
+// function  TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
+//   Column({
+//     space:5
+//   }) {
+//     Image(url).width(20).fillColor(pageIndex == this.currentIndex ? Color.Green : '#ddd')
+//     Text(title).fontColor(pageIndex == this.currentIndex ? Color.Green : '#ddd').fontSize(13)
+//   }
+// }
 
 @Entry
 @Component
@@ -26,7 +36,7 @@ struct Index {
   ]
 
   @Builder
-  TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
+    TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
     Column({
       space:5
     }) {
@@ -34,6 +44,7 @@ struct Index {
       Text(title).fontColor(pageIndex == this.currentIndex ? Color.Green : '#ddd').fontSize(13)
     }
   }
+
 
   @Builder
   TabContentBuilder00() {
@@ -74,14 +85,16 @@ struct Index {
                 this.TabContentBuilder03()
               }
             }
-            .tabBar(TabBarBuilder(item.title, item.url, index,this.currentIndex))
+            .tabBar(this.TabBarBuilder(item.title, item.url, index))
             // .tabBar(this.TabBarBuilder(item.title, item.url, index))
           })
-        }.onChange((index: number) => {
-          this.currentIndex = index
-        }).onTabBarClick((index: number) => {
-          this.currentIndex = index
-        })
+        }
+        // .onChange((index: number) => {
+        //   this.currentIndex = index
+        // })
+        // .onTabBarClick((index: number) => {
+        //   this.currentIndex = index
+        // })
       }
       .width('100%')
     }
