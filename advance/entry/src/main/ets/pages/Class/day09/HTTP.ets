@@ -1,4 +1,10 @@
-import axios from '@ohos/axios'
+import axios, { AxiosResponse } from '@ohos/axios'
+import { promptAction } from '@kit.ArkUI'
+
+interface NewResponse {
+  message: string
+  data: News[]
+}
 
 interface News {
 
@@ -24,7 +30,35 @@ struct HttpRequest {
     },
   ]
 
+  aboutToAppear(): void {
+    this.getinfo()
+  }
+
+  async getinfo() {
+    let response: AxiosResponse<NewResponse> = await axios.get<NewResponse, AxiosResponse<NewResponse>, null>('http://hmajax.itheima.net/api/news')
+    let res: NewResponse = JSON.parse(JSON.stringify(response.data))
+    this.newList = res.data
+    promptAction.showToast({ message: JSON.stringify(res.data) })
+    // console.log(JSON.stringify(res.data));
+  }
+
   build() {
+    Column() {
+      List() {
+        ForEach(this.newList, (item: News, index: number) => {
+          ListItem() {
+            Column({
+              space: 10
+            }) {
+              Image(item.img).width(200)
+              Text(item.title)
+            }
+          }
+
+        })
+      }
+
+    }
 
   }
 }

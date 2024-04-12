@@ -10,7 +10,7 @@ struct Index {
       Column() {
         Scroll(){
           Button('点击跳转').onClick((event: ClickEvent) => {
-            router.pushUrl({ url:'pages/ClassOnline/day07/Loading'})
+            router.pushUrl({ url:'pages/Class/day09/HTTP'})
           })
         }
 

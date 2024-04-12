@@ -18,6 +18,7 @@
     "pages/ClassOnline/day07/Loading",
     "pages/ClassOnline/day07/ForEashCase",
     "pages/ClassOnline/day07/ForEachGoodCase",
-    "pages/ClassOnline/day08/BuilderCase"
+    "pages/ClassOnline/day08/BuilderCase",
+    "pages/Class/day09/HTTP"
   ]
 }
