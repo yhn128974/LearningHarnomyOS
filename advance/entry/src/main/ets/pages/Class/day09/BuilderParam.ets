@@ -59,9 +59,7 @@ struct BuilderParamCase {
 @Component
 struct HmCard {
   @State message: string = 'Hi this message from children!'
-
   ChangeParentMessage:()=>void=()=>{}
-
   @Builder
   getDefaultContent() {
     Text('there is a default text')

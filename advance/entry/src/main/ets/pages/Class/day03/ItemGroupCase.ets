@@ -8,7 +8,7 @@ class ContactContent {
 struct ContactsList {
   @State scollIndex: number = 0
   private listScroller: Scroller = new Scroller();
-  alphabets: string[] = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+  alphabets: string[] = [ '#','A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
     'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   contacts: ContactContent[] = [
     { initial: 'A', nameList: ['阿猫', '阿狗', '阿虎', '阿龙', '阿鹰', '阿狼', '阿豹', '阿狮', '阿象', '阿鲸'] },

@@ -25,27 +25,24 @@ struct BiulderParamCase {
   }
 
   build() {
-
     Column({
       space: 10
     }) {
-
-
       this.SetHeader({
-        message:this.info.message
+        message: this.info.message
       })
 
       HmCard({
         Header: () => {
           this.SetHeader({
-            message:this.info.message
+            message: this.info.message
           })
         },
         Boy: () => {
           this.SetBoy()
         }
-
       })
+
       HmCard({
         Header: () => {
           this.SetHeader2()
@@ -53,17 +50,16 @@ struct BiulderParamCase {
         Boy: () => {
           this.SetBoy()
         }
-
       })
 
       Button('changeMessage').onClick((event: ClickEvent) => {
         this.info.message = 'message was changed'
       })
+
     }
     .height('100%')
     .width('100%')
     .backgroundColor(Color.Gray)
-
   }
 }
 

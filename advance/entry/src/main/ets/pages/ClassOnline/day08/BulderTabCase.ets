@@ -1,8 +1,10 @@
 import { TabBarBuilder } from './Builder'
+
 interface TabBarInfo {
   title: string;
   url: ResourceStr
 }
+
 //全局Builder无法实现状态更新
 // @Builder
 // function  TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
@@ -23,28 +25,30 @@ struct Index {
     {
       title: '微信',
       url: $r('app.media.weichat')
-    }, {
-    title: '联系人',
-    url: $r('app.media.contacter')
-  }, {
-    title: '发现',
-    url: $r('app.media.reseach')
-  }, {
-    title: '我的',
-    url: $r('app.media.mine')
-  },
+    },
+    {
+      title: '联系人',
+      url: $r('app.media.contacter')
+    },
+    {
+      title: '发现',
+      url: $r('app.media.reseach')
+    },
+    {
+      title: '我的',
+      url: $r('app.media.mine')
+    },
   ]
 
   @Builder
-    TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
+  TabBarBuilder(title: string, url: ResourceStr, pageIndex: number) {
     Column({
-      space:5
+      space: 5
     }) {
       Image(url).width(20).fillColor(pageIndex == this.currentIndex ? Color.Green : '#ddd')
       Text(title).fontColor(pageIndex == this.currentIndex ? Color.Green : '#ddd').fontSize(13)
     }
   }
-
 
   @Builder
   TabContentBuilder00() {
@@ -71,7 +75,7 @@ struct Index {
       Column() {
         Tabs({
           barPosition: BarPosition.End,
-          index:$$this.currentIndex
+          index: $$this.currentIndex
         }) {
           ForEach(this.TabBarInfo, (item: TabBarInfo, index: number) => {
             TabContent() {
@@ -86,9 +90,11 @@ struct Index {
               }
             }
             .tabBar(this.TabBarBuilder(item.title, item.url, index))
+
             // .tabBar(this.TabBarBuilder(item.title, item.url, index))
           })
         }
+
         // .onChange((index: number) => {
         //   this.currentIndex = index
         // })
