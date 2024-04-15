@@ -132,7 +132,7 @@ struct PropCase {
     .width('100%')
     .height('100%')
     .padding(10)
-    .bindSheet($$this.ishowalbum, this.albumBuilder(), { showClose: false ,height:'70%'})
+    .bindSheet($$this.ishowalbum, this.albumBuilder(), { showClose: false, height: '70%' })
   }
 
   // Builder内部可以放置组件
