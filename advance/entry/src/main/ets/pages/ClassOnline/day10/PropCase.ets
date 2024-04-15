@@ -1,4 +1,12 @@
 import { GoodItem } from '../day09/moduls'
+import { promptAction } from '@kit.ArkUI'
+
+interface imageIteminfo {
+  imageurl: ResourceStr;
+  iscelecat: boolean
+  id: number
+}
+
 
 @Entry
 @Component
@@ -48,41 +56,105 @@ struct PropCase {
   ]
   @State ishowalbum: boolean = false
   @State selectedNumber: number = 5
+  @State indexselectPhone: imageIteminfo[] = []
+  // @State isshowPhone: boolean = false
+  // 无需响应式 Dialog 弹层的组件每次都会被重新创建和销毁
+  selectedPhoneIndex: number = 0
+  // Dialog 弹层 显示声明对象 类型为CustomDialogController
+  preview: CustomDialogController = new CustomDialogController({
+    builder: ShowPhone({
+      showPhone: this.indexselectPhone[this.selectedPhoneIndex],
+    }),
+    // 按照弹层的样式来渲染
+    customStyle: true,
+    cancel: () => {
+      promptAction.showToast({ message: '弹层关闭' })
+    }
+  })
+
+  getselectedPhone(selectPhone: imageIteminfo[]) {
+    this.indexselectPhone.push(...selectPhone)
+  }
+
+  clearselectedPhone() {
+    this.indexselectPhone.splice(0)
+  }
 
   build() {
-    Row() {
-      Button('点击选择相册').onClick((event: ClickEvent) => {
-        this.ishowalbum = true
-      })
-      if (this.ishowalbum) {
-        PhotoAlbum({
-          list: this.list,
-          ishowalbum: this.ishowalbum,
-          selectedNumber: this.selectedNumber
+    Column({
+      space: 10
+    }) {
+      Row() {
+        Button('点击选择相册').onClick((event: ClickEvent) => {
+          this.ishowalbum = true
+        }).width('100%')
+      }
+
+      Grid() {
+        ForEach(this.indexselectPhone, (item: imageIteminfo, index) => {
+          GridItem() {
+            Column() {
+              Image(item.imageurl).aspectRatio(1).borderRadius(4).onClick(() => {
+                // this.isshowPhone = true
+                this.selectedPhoneIndex = index
+                this.preview.open()
+              })
+            }
+          }
         })
       }
+      .columnsTemplate('1fr 1fr ')
+      .layoutWeight(1)
+      .rowsGap(4)
+      .columnsGap(4)
+      .layoutWeight(1)
+
+
+      // if (this.isshowPhone) {
+      //   Column() {
+      //     ShowPhone({
+      //       showPhone: this.indexselectPhone[this.selectedPhoneIndex],
+      //       isshowPhone: this.isshowPhone
+      //     })
+      //   }
+      //   .padding(10)
+      //   .backgroundColor(Color.Black)
+      //   .width('100%')
+      //   .height('100%')
+      //   .zIndex(2)
+      //   .position({
+      //     x: 0,
+      //     y: 0
+      //   })
+      // }
+
     }
+    .width('100%')
+    .height('100%')
+    .padding(10)
+    .bindSheet($$this.ishowalbum, this.albumBuilder(), { showClose: false ,height:'70%'})
+  }
+
+  // Builder内部可以放置组件
+  @Builder
+  albumBuilder() {
+    Column() {
+      // 注意 bindSheet 内部的层级问题
+      PhotoAlbum({
+        list: this.list,
+        ishowalbum: this.ishowalbum,
+        selectedNumber: this.selectedNumber,
+        fished: (selectPhone: imageIteminfo[]) => {
+          this.getselectedPhone(selectPhone)
+        },
+        clearselectedPhone: () => {
+          this.clearselectedPhone()
+        }
+      }).zIndex(99)
+    }
+
   }
 }
-
-interface imageIteminfo {
-  imageurl: ResourceStr;
-  iscelecat: boolean
-  id: number
-}
-
-// @Observed
-// class imageIteminfoModel {
-//   imageurl: ResourceStr = ''
-//   iscelecat: boolean = false
-//   id: number = 0
-//
-//   constructor(item: imageIteminfo) {
-//     this.imageurl = item.imageurl
-//     this.iscelecat = item.iscelecat
-//     this.id = item.id
-//   }
-// }
 
 
 @Component
@@ -91,16 +163,21 @@ struct PhotoAlbum {
   @Link ishowalbum: boolean
   @Prop selectedNumber: number
   @State selectPhone: imageIteminfo[] = []
+  fished: (selectPhone: imageIteminfo[]) => void = () => {
+  }
+  clearselectedPhone: () => void = () => {
+  }
 
   selectImage(item: GoodItem) {
     if (this.selectPhone.some(obj => obj.id === item.id)) {
       const index = this.selectPhone.findIndex(obj => obj.id === item.id)
+
       this.selectPhone.splice(index, 1)
     } else {
       if (this.selectPhone.length < this.selectedNumber) {
         this.selectPhone.push({
           imageurl: item.goods_img,
-          iscelecat: true,
+          iscelecat: false,
           id: item.id
         })
       }
@@ -140,14 +217,48 @@ struct PhotoAlbum {
 
       Row() {
         Button('全部取消').onClick((event: ClickEvent) => {
-
+          this.selectPhone.splice(0)
         }).backgroundColor(Color.Gray)
         Text(`已经选择数目${this.selectPhone.length}/${this.selectedNumber}`)
         Button('确定').onClick((event: ClickEvent) => {
           this.ishowalbum = false
+          this.clearselectedPhone()
+          this.fished(this.selectPhone)
         })
       }.justifyContent(FlexAlign.SpaceBetween).width('100%').height(50)
-    }.position({
+    }
+
+    .backgroundColor(Color.White)
+    .padding(10)
+  }
+}
+
+@CustomDialog
+struct ShowPhone {
+  // @link isshowPhone: boolean
+  controller: CustomDialogController // 控制器
+  showPhone: imageIteminfo = {
+    imageurl: 'ResourceStr',
+    iscelecat: false,
+    id: 0
+  }
+
+  build() {
+    Column({
+      space: 10
+    }) {
+      Image(this.showPhone.imageurl).width('100%').layoutWeight(1).backgroundColor(Color.White).padding(10)
+      // .onClick(this.controller.close())
+      // Button('返回').onClick((event: ClickEvent) => {
+      //   this.isshowPhone = false
+      // }).height(50).width('100%')
+    }
+    .padding(10)
+    .backgroundColor(Color.Black)
+    .width('100%')
+    .height('100%')
+    .zIndex(2)
+    .position({
       x: 0,
       y: 0
     })
