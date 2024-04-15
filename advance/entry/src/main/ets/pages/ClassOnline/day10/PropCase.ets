@@ -63,7 +63,8 @@ struct PropCase {
   // Dialog 弹层 显示声明对象 类型为CustomDialogController
   preview: CustomDialogController = new CustomDialogController({
     builder: ShowPhone({
-      showPhone: this.indexselectPhone[this.selectedPhoneIndex],
+      selectedPhoneIndex: this.selectedPhoneIndex,
+      showPhone: this.indexselectPhone,
     }),
     // 按照弹层的样式来渲染
     customStyle: true,
@@ -236,22 +237,30 @@ struct PhotoAlbum {
 @CustomDialog
 struct ShowPhone {
   // @link isshowPhone: boolean
-  controller: CustomDialogController // 控制器
-  showPhone: imageIteminfo = {
-    imageurl: 'ResourceStr',
-    iscelecat: false,
-    id: 0
-  }
+  controller: CustomDialogController // 控制器(必须)
+  swipercontroller: SwiperController = new SwiperController()
+  @Prop selectedPhoneIndex: number
+  @Prop showPhone: imageIteminfo[] = []
 
   build() {
     Column({
       space: 10
     }) {
-      Image(this.showPhone.imageurl).width('100%').layoutWeight(1).backgroundColor(Color.White).padding(10)
-      // .onClick(this.controller.close())
-      // Button('返回').onClick((event: ClickEvent) => {
-      //   this.isshowPhone = false
-      // }).height(50).width('100%')
+      Swiper(this.swipercontroller,
+      ) {
+        ForEach(this.showPhone, (item: imageIteminfo) => {
+          Image(item.imageurl)
+            .width('100%')
+            .height('100%')
+            .layoutWeight(1)
+            .backgroundColor(Color.White)
+            .padding(10)
+            .onClick(()=>{
+            this.controller.close()
+          })
+        })
+      }.index(this.selectedPhoneIndex)
+
     }
     .padding(10)
     .backgroundColor(Color.Black)

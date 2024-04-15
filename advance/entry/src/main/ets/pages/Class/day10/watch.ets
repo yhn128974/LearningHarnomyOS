@@ -20,8 +20,6 @@ struct Index {
       Button('changed message').onClick((event: ClickEvent) => {
         this.message = 'message was changed!'
       })
-
-
       ChildIndex({
         message: this.message,
       })
@@ -39,6 +37,7 @@ struct ChildIndex {
       Text(this.message)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
+      
       Button('changed message').onClick((event: ClickEvent) => {
         this.message = 'message was changed!'
       })
