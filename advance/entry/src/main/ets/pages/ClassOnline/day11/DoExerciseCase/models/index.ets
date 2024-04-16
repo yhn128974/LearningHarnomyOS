@@ -28,3 +28,10 @@ export class OptionItemModel implements OptionItem {
     this.optionTitle = model.optionTitle
   }
 }
+
+// 设计一个用户的答案的结构
+export interface UserAnswer {
+  question_id: number // 做题的题目的id
+  user_answer: string // 用户所选的答案
+  user_id: string  // 当前的用户的id
+}

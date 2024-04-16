@@ -1,4 +1,5 @@
-import { QuestionInfo, QuestionInfoModel, OptionItemModel } from './models'
+import { QuestionInfo, QuestionInfoModel, OptionItemModel, OptionItem, UserAnswer } from './models'
+import { promptAction } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -7,6 +8,12 @@ struct WatchBigCase {
   list: QuestionInfoModel[] = []
   @State currentIndex: number = 1
   @State currentInfoModel: QuestionInfoModel = new QuestionInfoModel({} as QuestionInfo)
+  // Partial 将内部的所有字段变为可选类型
+  //  @State answer:Partial<UserAnswer>={}
+
+  @State
+  // {1:{},2:{},3:{}}
+  answerMap: Record<number, UserAnswer> = {}
 
   aboutToAppear(): void {
     this.getQuestionList()
@@ -132,7 +139,21 @@ struct WatchBigCase {
             .backgroundColor('#ddd')
             .height(40)
             .padding(10)
+            .border({
+              color: this.answerMap[this.currentInfoModel.id]?.user_answer === item.letter ? Color.Green : Color.Gray,
+              style: BorderStyle.Solid,
+              width: 2
+            })
+            .onClick(() => {
 
+              // [字段]取字段 在object或者record中被NEXT支持
+              this.answerMap[this.currentInfoModel.id] = {
+                question_id: this.currentInfoModel.id,
+                user_answer: item.letter,
+                user_id: '001'
+              }
+
+            })
           }
         })
       }
