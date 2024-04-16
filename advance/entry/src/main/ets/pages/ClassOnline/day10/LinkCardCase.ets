@@ -126,7 +126,6 @@ struct HmCartItem {
             if (this.item.food_count) {
               this.subtractItemCount()
             }
-
           }).height(20)
           Text(`${this.item.food_count.toString()}`)
           Button('+').onClick((event: ClickEvent) => {

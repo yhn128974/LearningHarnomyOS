@@ -24,6 +24,9 @@
     "pages/ClassOnline/day10/BuilderParamTagAfter",
     "pages/ClassOnline/day10/PropCase",
     "pages/Class/day10/ProvideAndConsume",
-    "pages/ClassOnline/day10/LinkCardCase"
+    "pages/ClassOnline/day10/LinkCardCase",
+    "pages/ClassOnline/day11/ProvideAndConsumeCase/LoginPage",
+    "pages/ClassOnline/day11/ProvideAndConsumeCase/IndexPage",
+    "pages/ClassOnline/day11/DoExerciseCase"
   ]
 }

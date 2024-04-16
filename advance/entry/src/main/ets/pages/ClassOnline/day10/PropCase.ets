@@ -110,7 +110,6 @@ struct PropCase {
       .columnsGap(4)
       .layoutWeight(1)
 
-
       // if (this.isshowPhone) {
       //   Column() {
       //     ShowPhone({
@@ -255,9 +254,9 @@ struct ShowPhone {
             .layoutWeight(1)
             .backgroundColor(Color.White)
             .padding(10)
-            .onClick(()=>{
-            this.controller.close()
-          })
+            .onClick(() => {
+              this.controller.close()
+            })
         })
       }.index(this.selectedPhoneIndex)
 
