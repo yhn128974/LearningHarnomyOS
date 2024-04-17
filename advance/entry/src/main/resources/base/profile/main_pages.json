@@ -31,6 +31,8 @@
     "pages/HMClass/day11/routerCase/First",
     "pages/HMClass/day11/routerCase/Second",
     "pages/HMClassOnline/day13/LocalStorageCase/PageA",
-    "pages/HMClassOnline/day13/LocalStorageCase/PageB"
+    "pages/HMClassOnline/day13/LocalStorageCase/PageB",
+    "pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityA",
+    "pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityB"
   ]
 }

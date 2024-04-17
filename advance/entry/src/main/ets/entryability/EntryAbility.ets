@@ -2,20 +2,57 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
+
+export interface Car {
+  name: string,
+  color: ResourceColor,
+  engine: string
+}
+
+export class CarModel implements Car {
+  name: string = ''
+  color: ResourceColor = Color.White
+  engine: string = ''
+
+  constructor(model: Car) {
+    this.name = model.name
+    this.color = model.color
+    this.engine = model.engine
+  }
+}
+
+let carInfo: Record<string, CarModel> = {
+  "BMW": new CarModel({
+    name: 'BMW7se',
+    color: Color.Blue,
+    engine: 'electric'
+  })
+}
+
+export  const carInfo_localStorage:LocalStorage = new LocalStorage(carInfo)
+//
+// export  class UserInfoClass {
+//   name?: string = ""
+//   age?: number = 0
+// }
+// let user: Record<string, UserInfoClass> = { "user": {
+//   name: '水若寒宇',
+//   age: 34
+// }};
+// const sharedStorage = new LocalStorage(user)
+
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
-
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
-
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/Index', (err, data) => {
+    windowStage.loadContent('pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityA', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

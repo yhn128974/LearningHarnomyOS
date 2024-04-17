@@ -1,4 +1,5 @@
 import { router } from '@kit.ArkUI';
+// // 通过导入获取
 import { localStorage, PersonModel, Person } from '../models/commonLocalStorage'
 
 @Entry(localStorage)
