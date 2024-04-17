@@ -8,13 +8,11 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Scroll(){
+        Scroll() {
           Button('点击跳转').onClick((event: ClickEvent) => {
-            router.pushUrl({ url:'pages/Class/day09/HTTP'})
+            router.pushUrl({ url: 'pages/Class/day09/HTTP' })
           })
         }
-
-
       }
       .width('100%')
     }
