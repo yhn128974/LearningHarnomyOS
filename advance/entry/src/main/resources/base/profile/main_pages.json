@@ -29,6 +29,8 @@
     "pages/HMClassOnline/day11/ProvideAndConsumeCase/IndexPage",
     "pages/HMClassOnline/day11/DoExerciseCase/DoExerciseCase",
     "pages/HMClass/day11/routerCase/First",
-    "pages/HMClass/day11/routerCase/Second"
+    "pages/HMClass/day11/routerCase/Second",
+    "pages/HMClassOnline/day13/LocalStorageCase/PageA",
+    "pages/HMClassOnline/day13/LocalStorageCase/PageB"
   ]
 }
