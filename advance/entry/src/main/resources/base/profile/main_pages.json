@@ -33,6 +33,14 @@
     "pages/HMClassOnline/day13/LocalStorageCase/PageA",
     "pages/HMClassOnline/day13/LocalStorageCase/PageB",
     "pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityA",
-    "pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityB"
+    "pages/HMClassOnline/day13/LocalStorageCase/FromEntryAbilityB",
+    "pages/HMClassOnline/day13/AppStorageCase/AppStorageCasePageA",
+    "pages/HMClassOnline/day13/AppStorageCase/AppStorageCasePageB",
+    "pages/HMClassOnline/day13/PersistentStorageCase/Pages/testA",
+    "pages/HMClassOnline/day13/PersistentStorageCase/Pages/testB",
+    "pages/HMClassOnline/day13/PersistentStorageCase/Pages/Login",
+    "pages/HMClassOnline/day13/PersistentStorageCase/Pages/Home",
+    "pages/HMClassOnline/day13/preferences/Pages/Home",
+    "pages/HMClassOnline/day13/preferences/Pages/Login"
   ]
 }

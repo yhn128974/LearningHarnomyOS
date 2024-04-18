@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI';
-import { localStorage, PersonModel, Person } from '../models/commonLocalStorage'
+import { localStorage, PersonModel, Person } from './models/commonLocalStorage'
 
 @Entry(localStorage)
 @Component

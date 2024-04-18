@@ -1,12 +1,13 @@
 import { router } from '@kit.ArkUI';
 // // 通过导入获取
-import { localStorage, PersonModel, Person } from '../models/commonLocalStorage'
+import { localStorage, PersonModel, Person } from './models/commonLocalStorage'
 
 @Entry(localStorage)
   //表示需要共享
 @Component
 struct PageA {
   @State message: string = 'Page A';
+  // Local===this.ability
   @LocalStorageProp('Alice')
   Alice: PersonModel = new PersonModel({} as Person) //必须给初始值，页面加载完毕后不一定能马上拿到localStorage的数据,避免数据UNDIFIND
   @LocalStorageLink('Ben')
