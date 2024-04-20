@@ -12,7 +12,7 @@ struct MTBottom {
           value: '0',
           position: BadgePosition.Right,
           style: { badgeSize: 18, badgeColor: '#FA2A2D' }
-        }){
+        }) {
           Image($r('app.media.ic_public_cart')).width(47).height(69).position({
             y: -20
           })
@@ -28,7 +28,7 @@ struct MTBottom {
             Text(`0.00`).MTBootomfontColor().fontSize(24)
           }.alignItems(VerticalAlign.Bottom)
 
-          Text(`预购另需配送费￥${this.peiSongFei}`).fontColor($r('app.color.search_font_color')).fontSize(14)
+          Text(`预购另需配送费￥${this.peiSongFei}`).fontColor($r('app.color.search_font_color')).fontSize(12)
 
         }
         .alignItems(HorizontalAlign.Start)
@@ -38,10 +38,15 @@ struct MTBottom {
         })
         .layoutWeight(1)
 
-        Text('去结算').height(50).width(100).backgroundColor($r('app.color.main_color')).textAlign(TextAlign.Center).borderRadius({
-          topRight:25,
-          bottomRight:25
-        })
+        Text('去结算')
+          .height(50)
+          .width(100)
+          .backgroundColor($r('app.color.main_color'))
+          .textAlign(TextAlign.Center)
+          .borderRadius({
+            topRight: 25,
+            bottomRight: 25
+          })
       }
       .width('100%')
       .height(50)
