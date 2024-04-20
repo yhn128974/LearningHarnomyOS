@@ -41,6 +41,10 @@
     "pages/HMClassOnline/day13/PersistentStorageCase/Pages/Login",
     "pages/HMClassOnline/day13/PersistentStorageCase/Pages/Home",
     "pages/HMClassOnline/day13/preferences/Pages/Home",
-    "pages/HMClassOnline/day13/preferences/Pages/Login"
+    "pages/HMClassOnline/day13/preferences/Pages/Login",
+    "pages/HMClassOnline/day14/httpRequest/httptest",
+    "pages/HMClassOnline/day15/TaskCase",
+    "pages/HMClassOnline/day15/workCase",
+    "pages/HMClassOnline/day15/MeiTuan/MTIndex"
   ]
 }

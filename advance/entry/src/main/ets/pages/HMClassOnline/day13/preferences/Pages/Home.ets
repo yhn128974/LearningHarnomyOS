@@ -19,6 +19,7 @@ struct Home {
             url: 'pages/HMClassOnline/day13/preferences/Pages/Login'
           });
         })
+
         Button('退出登录').onClick((event: ClickEvent) => {
           TokenManager.setToken('')
         })

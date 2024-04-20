@@ -3,6 +3,7 @@ import { router } from '@kit.ArkUI'
 
 // 通过getShared获取
 let carInfo_localStorage = LocalStorage.getShared()
+
 @Entry(carInfo_localStorage)
 @Component
 struct FromEntryAbilityB {

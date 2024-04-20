@@ -33,5 +33,5 @@ let personInfo: Record<string, PersonModel> = {
 const localStorage = new LocalStorage(personInfo)
 
 export {
-  localStorage, PersonModel,Person
+  localStorage, PersonModel, Person
 }

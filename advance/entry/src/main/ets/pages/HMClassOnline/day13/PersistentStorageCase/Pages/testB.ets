@@ -16,6 +16,7 @@ struct Index {
         Text(this.text.b)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
+
         Button('点击跳转').onClick((event: ClickEvent) => {
           router.pushUrl({
             url: 'pages/HMClassOnline/day13/PersistentStorageCase/Pages/testA'

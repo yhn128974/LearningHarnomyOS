@@ -4,10 +4,10 @@ import { promptAction } from '@kit.ArkUI'
 
 PersistentStorage.persistProp('text', '') //写入磁盘
 PersistentStorage.persistProp('name', 'longyou') //写入磁盘
+
 @Entry
 @Component
 struct Index {
-
   @StorageLink('name')
   name: string = ''
 
@@ -28,7 +28,7 @@ struct Index {
         })
 
         Button('设置name').onClick((event: ClickEvent) => {
-          let res1 =AppStorage.set('name', 'ethanyu')
+          let res1 = AppStorage.set('name', 'ethanyu')
 
           let res2 = AppStorage.set<ArrayNumberModel>('text', new ArrayNumberModel({
             a: '123',
@@ -36,7 +36,7 @@ struct Index {
             c: '789'
           }))
 
-          if (res1&&res2) {
+          if (res1 && res2) {
             promptAction.showToast({
               message: 'writing successful'
             })
