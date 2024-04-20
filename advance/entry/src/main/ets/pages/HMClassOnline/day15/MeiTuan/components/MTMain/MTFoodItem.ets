@@ -1,19 +1,25 @@
+import { FoodItem } from '../../models'
+import MTAddCut from '../MTAddCut'
 @Preview
 @Component
 struct MTFoodItem {
+  @Prop Item: FoodItem
+
+
   build() {
     Row() {
-      Image('https://zqran.gitee.io/images/waimai/8078956697.jpg')
+      Image(this.Item.picture)
         .width(90)
         .aspectRatio(1)
+
       Column({ space: 5 }) {
-        Text('小份酸汤莜面鱼鱼+肉夹馍套餐')
+        Text(this.Item.name)
           .textOverflow({
             overflow: TextOverflow.Ellipsis,
           })
           .maxLines(2)
           .fontWeight(600)
-        Text('酸汤莜面鱼鱼，主料：酸汤、莜面 肉夹馍，主料：白皮饼、猪肉')
+        Text(this.Item.description)
           .textOverflow({
             overflow: TextOverflow.Ellipsis,
           })
@@ -27,9 +33,9 @@ struct MTFoodItem {
           .padding({ top: 2, bottom: 2, right: 5, left: 5 })
           .borderRadius(2)
         Text() {
-          Span('月销售40')
+          Span(`月销售${this.Item.month_saled}`)
           Span(' ')
-          Span('好评度100%')
+          Span(this.Item.like_ratio_desc)
         }
         .fontSize(12)
         .fontColor($r("app.color.black"))
@@ -39,10 +45,11 @@ struct MTFoodItem {
             Span('¥ ')
               .fontColor($r("app.color.font_main_color"))
               .fontSize(10)
-            Span('34.23')
+            Span(this.Item.price.toString())
               .fontColor($r("app.color.font_main_color"))
               .fontWeight(FontWeight.Bold)
           }
+          MTAddCut()
         }
         .justifyContent(FlexAlign.SpaceBetween)
         .width('100%')
@@ -53,6 +60,8 @@ struct MTFoodItem {
     }
     .padding(10)
     .alignItems(VerticalAlign.Top)
+
   }
 }
+
 export default MTFoodItem

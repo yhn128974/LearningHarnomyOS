@@ -1,9 +1,13 @@
+import { FoodItem } from '../models'
+
 @Component
 struct MTBottom {
   @State
   count: number = 0.00
-  @State
-  peiSongFei: number = 0
+  @State peiSongFei: number = 0
+
+  @Consume showCart: boolean
+
 
   build() {
     Row() {
@@ -15,6 +19,8 @@ struct MTBottom {
         }) {
           Image($r('app.media.ic_public_cart')).width(47).height(69).position({
             y: -20
+          }).onClick(() => {
+            this.showCart = !this.showCart
           })
         }
         .margin({

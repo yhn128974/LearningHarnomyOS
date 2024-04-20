@@ -1,19 +1,23 @@
 import MTFoodItem from './MTFoodItem'
-
+import { Category, FoodItem } from '../../models'
 @Component
 struct MTMain {
-  @State titlelist: string[] = [
-    '一人套餐', '特色烧烤', '杂粮主食'
-  ]
+
   @State currentIndex: number = 0
+
+  @Prop CategoryList: Category[]
+
+  @Provide selectedItem: FoodItem[] = []
+
+
 
   build() {
     Row() {
       Column({
         space: 10
       }) {
-        ForEach(this.titlelist, (item: string, index: number) => {
-          Text(item)
+        ForEach(this.CategoryList, (item: Category, index: number) => {
+          Text(item.name)
             .height(50)
             .width('100%')
             .fontSize(14)
@@ -32,16 +36,24 @@ struct MTMain {
 
       Column() {
         List() {
-          ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], () => {
-            MTFoodItem()
-          })
+            ForEach(this.CategoryList[this.currentIndex]?.foods||[], (item:FoodItem,index:number) => {
+              MTFoodItem({
+                Item:item,
+              })
+            })
         }
-
-      }.layoutWeight(1).margin({
+      }
+      .layoutWeight(1)
+      .padding({
         bottom: 120
       })
+      .height('100%')
 
-    }.width('100%')
+
+
+
+
+    }.width('100%').height('100%')
 
   }
 }
