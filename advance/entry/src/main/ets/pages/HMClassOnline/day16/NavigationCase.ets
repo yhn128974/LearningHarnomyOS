@@ -4,6 +4,33 @@ struct NavigationCase {
   @State message: string = 'Hello World';
 
   build() {
+    Navigation() {
+      // NavRouter必须放两个页面最后一个必须是NavDestination
+      NavRouter() {
+        //跳转链接
+        Text('PAGE A')
+
+        // 跳转内容
+        NavDestination() {
+          PageA()
+        }.title('Atitle')
+      }
+
+      NavRouter() {
+        Button('PAGE B')
+
+        NavDestination() {
+          Text('PAGE B text')
+        }.title('Btitle')
+      }
+    }
+  }
+}
+
+@Component
+struct PageA {
+  @State message: string = 'Wecome! page A';
+  build() {
     Row() {
       Column() {
         Text(this.message)
@@ -15,3 +42,4 @@ struct NavigationCase {
     .height('100%')
   }
 }
+

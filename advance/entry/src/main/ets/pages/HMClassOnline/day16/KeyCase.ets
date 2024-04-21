@@ -1,17 +1,41 @@
 @Entry
 @Component
 struct KeyCase {
-  @State message: string = 'Hello World';
-
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+    Column() {
+      Row() {
+        Text("顶部内容")
       }
+      .justifyContent(FlexAlign.Center)
+      .height(50)
+      .width('100%')
+
+      Scroll(){
+        Column() {
+          Text("中间内容")
+        }
+        .justifyContent(FlexAlign.Center)
+        .backgroundColor(Color.Orange)
+        .width('100%')
+        .height('200%')
+
+      }  .layoutWeight(1)
+
+
+
+      Row() {
+        TextInput({ placeholder: '请输入内容' })
+          .width('100%')
+      }
+      .padding({
+        left: 10,
+        right: 10
+      })
+      .justifyContent(FlexAlign.Center)
+      .height(50)
       .width('100%')
     }
+    .width('100%')
     .height('100%')
   }
 }

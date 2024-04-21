@@ -1,6 +1,6 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
+import { KeyboardAvoidMode, window, } from '@kit.ArkUI';
 import { TokenManager } from '../pages/HMClassOnline/day13/preferences/my_perferences';
 
 
@@ -59,7 +59,7 @@ export default class EntryAbility extends UIAbility {
     // 根据用户首选项的 TokenManager.getToken(this.context)的存在来判断ability的入口
     // windowStage.loadContent(await TokenManager.getToken(this.context) ?'pages/HMClassOnline/day13/preferences/Pages/Home':'pages/HMClassOnline/day13/preferences/Pages/Login',,)
 
-    windowStage.loadContent('pages/HMClassOnline/day16/setWindowsLayoutFullScreen', carInfo_localStorage, (err, data) => {
+    windowStage.loadContent('pages/HMClassOnline/day16/KeyCase', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
@@ -67,8 +67,11 @@ export default class EntryAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
 
 
+      // 设置键盘避让
+      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
 
     });
+    // 设置app全屏显示
     // windowStage.getMainWindowSync().setWindowLayoutFullScreen(true)
 
   }
