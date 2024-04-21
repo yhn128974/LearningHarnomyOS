@@ -16,7 +16,7 @@ interface RecommendItem {
 
 @Entry
 @Component
-struct Index {
+struct Index_template {
   @State bannerList: BannerItem[] = [
     { imgUrl: $r('app.media.banner_01_1'), imgTitle: '谷歌杀入开源大模型，凭什么问鼎王座？' },
     { imgUrl: $r('app.media.banner_01_3'), imgTitle: '微软牵手OpenAI劲敌！Mistral顶级大模型不再开源' },

@@ -1,10 +1,12 @@
 import { FoodItem } from '../../models'
+import { CartStore } from '../../utils'
 import MTCartItem from './MTCartItem'
 
 @Preview
 @Component
 export default struct MTCart {
-
+  @Consume
+  userCard: FoodItem[]
 
   build() {
     Stack({
@@ -13,7 +15,9 @@ export default struct MTCart {
       Column() {
         Row() {
           Text('购物车')
-          Text('清空购物车').fontColor($r('app.color.search_font_color')).fontSize(12)
+          Text('清空购物车').fontColor($r('app.color.search_font_color')).fontSize(12).onClick(() => {
+            this.userCard = []
+          })
         }
         .width('100%')
         .padding({
@@ -26,13 +30,22 @@ export default struct MTCart {
         Column({
           space: 20
         }) {
-          ForEach([1, 2, 3, 4], () => {
-            MTCartItem()
+          List() {
+            ForEach(this.userCard || [], (item: FoodItem) => {
+              ListItem() {
+                MTCartItem({
+                  fooditem: item
+                })
+              }
+            }, (item: FoodItem) => {
+              //  通过id判断是否更新数据
+              return item.id.toString()
+            })
+          }.padding({
+            left: 15,
+            right: 15
           })
-        }.padding({
-          left: 15,
-          right: 15
-        })
+        }
 
       }
       .backgroundColor(Color.White)

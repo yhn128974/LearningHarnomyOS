@@ -49,7 +49,9 @@ struct MTFoodItem {
               .fontColor($r("app.color.font_main_color"))
               .fontWeight(FontWeight.Bold)
           }
-          MTAddCut()
+          MTAddCut({
+            foodItem:this.Item
+          })
         }
         .justifyContent(FlexAlign.SpaceBetween)
         .width('100%')

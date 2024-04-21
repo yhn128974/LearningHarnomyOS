@@ -7,7 +7,7 @@ struct MTMain {
 
   @Prop CategoryList: Category[]
 
-  @Provide selectedItem: FoodItem[] = []
+
 
 
 

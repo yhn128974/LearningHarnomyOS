@@ -45,6 +45,7 @@
     "pages/HMClassOnline/day14/httpRequest/httptest",
     "pages/HMClassOnline/day15/TaskCase",
     "pages/HMClassOnline/day15/workCase",
-    "pages/HMClassOnline/day15/MeiTuan/MTIndex"
+    "pages/HMClassOnline/day15/MeiTuan/MTIndex",
+    "pages/HMClassOnline/day16/setWindowsLayoutFullScreen"
   ]
 }

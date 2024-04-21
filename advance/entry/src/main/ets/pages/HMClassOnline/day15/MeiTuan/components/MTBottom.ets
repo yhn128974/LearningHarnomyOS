@@ -1,19 +1,42 @@
 import { FoodItem } from '../models'
-
+import { promptAction } from '@kit.ArkUI'
+@Preview
 @Component
 struct MTBottom {
   @State
   count: number = 0.00
-  @State peiSongFei: number = 0
-
+  @State peiSongFei: number = 5
   @Consume showCart: boolean
+  @Consume userCard: FoodItem[]
 
+  getcounts() {
+
+    // let countNumber: number = 0
+    // for (const element of this.userCard) {
+    //   countNumber += element.price * element.count
+    // }
+    // return countNumber
+
+    return this.userCard.reduce((counts: number, item: FoodItem) => {
+      return counts += item.price * item.count
+    }, 0)
+
+  }
+
+  getFoodCount() {
+    let count: number = 0
+    for (const element of this.userCard) {
+      count += element.count
+    }
+    return count
+
+  }
 
   build() {
     Row() {
       Row() {
         Badge({
-          value: '0',
+          value: this.getFoodCount().toString(),
           position: BadgePosition.Right,
           style: { badgeSize: 18, badgeColor: '#FA2A2D' }
         }) {
@@ -31,7 +54,7 @@ struct MTBottom {
 
           Row() {
             Text('￥').MTBootomfontColor().fontSize(12)
-            Text(`0.00`).MTBootomfontColor().fontSize(24)
+            Text(`${this.getcounts()}`).MTBootomfontColor().fontSize(24)
           }.alignItems(VerticalAlign.Bottom)
 
           Text(`预购另需配送费￥${this.peiSongFei}`).fontColor($r('app.color.search_font_color')).fontSize(12)

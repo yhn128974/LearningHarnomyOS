@@ -58,13 +58,19 @@ export default class EntryAbility extends UIAbility {
 
     // 根据用户首选项的 TokenManager.getToken(this.context)的存在来判断ability的入口
     // windowStage.loadContent(await TokenManager.getToken(this.context) ?'pages/HMClassOnline/day13/preferences/Pages/Home':'pages/HMClassOnline/day13/preferences/Pages/Login',,)
-    windowStage.loadContent('pages/HMClassOnline/day15/MeiTuan/MTIndex', carInfo_localStorage, (err, data) => {
+
+    windowStage.loadContent('pages/HMClassOnline/day16/setWindowsLayoutFullScreen', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+
+
+
     });
+    // windowStage.getMainWindowSync().setWindowLayoutFullScreen(true)
+
   }
 
   onWindowStageDestroy(): void {

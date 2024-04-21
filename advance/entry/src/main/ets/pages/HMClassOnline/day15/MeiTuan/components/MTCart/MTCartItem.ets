@@ -1,33 +1,36 @@
 import { FoodItem } from '../../models'
 import MTAddCut from '../MTAddCut'
+
 @Preview
 @Component
 struct MTCartItem {
+  @Prop fooditem: FoodItem;
 
 
   build() {
     Row() {
-      Image('https://zqran.gitee.io/images/waimai/8078956697.jpg')
+      Image(this.fooditem.picture)
         .width(90)
         .aspectRatio(1)
         .borderRadius(5)
 
       Column({
-        space:5
+        space: 5
       }) {
-        Text('小份酸菜汤杂酱面+肉夹馍套餐')
+        Text(this.fooditem.name)
         Row() {
           Text() {
 
             Span('¥ ')
               .fontColor($r("app.color.font_main_color"))
               .fontSize(10)
-            Span('34.23')
+            Span(this.fooditem.price.toString())
               .fontColor($r("app.color.font_main_color"))
               .fontWeight(FontWeight.Bold)
-
           }
-          MTAddCut()
+          MTAddCut({
+            foodItem:this.fooditem
+          })
         }.justifyContent(FlexAlign.SpaceBetween)
         .width('100%')
       }
