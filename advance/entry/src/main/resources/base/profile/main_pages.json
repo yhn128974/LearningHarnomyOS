@@ -48,6 +48,9 @@
     "pages/HMClassOnline/day15/MeiTuan/MTIndex",
     "pages/HMClassOnline/day16/setWindowsLayoutFullScreen",
     "pages/HMClassOnline/day16/KeyCase",
-    "pages/HMClassOnline/day16/NavigationCase"
+    "pages/HMClassOnline/day16/NavigationCase",
+    "pages/HMClassOnline/day16/NavigationCase2",
+    "pages/HMClassOnline/day17/RouterCase/FromPageA",
+    "pages/HMClassOnline/day17/RouterCase/FromPageB"
   ]
 }

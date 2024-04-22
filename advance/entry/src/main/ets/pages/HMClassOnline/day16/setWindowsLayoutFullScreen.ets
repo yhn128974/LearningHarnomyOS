@@ -6,6 +6,7 @@ struct setWindowsLayoutFullScreen {
   build() {
     Row() {
       Column() {
+        
         Image($r('app.media.banner_01_1'))
           .width('100%')
           .height('100%')
