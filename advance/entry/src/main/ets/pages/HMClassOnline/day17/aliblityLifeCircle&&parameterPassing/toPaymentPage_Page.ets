@@ -14,7 +14,7 @@ struct ToPaymentPage_Page {
           .fontWeight(FontWeight.Bold)
 
 
-        Button('拉起payAbility并传递结果').onClick(async (event: ClickEvent) => {
+        Button('拉起payAbility并传递结果').onClick( () => {
           // 启动另一个ability
           let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
           let want: Want = {

@@ -20,17 +20,13 @@ struct ModulePageA {
           router.pushUrl({
             url: '@bundle:com.example.myapplication/library/ets/pages/Index'
           })
-
         })
         Button('Route to payment Page by name').onClick((event: ClickEvent) => {
           // 模块之间进行路由跳转
           router.pushNamedRoute({
             name: "pay_index"
           })
-
         })
-
-
       }
       .width('100%')
     }

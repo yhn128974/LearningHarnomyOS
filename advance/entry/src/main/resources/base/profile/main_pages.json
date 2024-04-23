@@ -56,6 +56,13 @@
     "pages/HMClassOnline/day17/PageLifeCircle/LifeCirclePageA",
     "pages/HMClassOnline/day17/PageLifeCircle/LifeCirclePageB",
     "pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/Payindex",
-    "pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/toPaymentPage_Page"
+    "pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/toPaymentPage_Page",
+    "pages/HMClassOnline/day18/animate/animateToCase",
+    "pages/HMClassOnline/day18/animate/ImageAnimatorCase",
+    "pages/HMClassOnline/day18/cutTo/ShowOrHide",
+    "pages/HMClassOnline/day18/animate/TransitionCase",
+    "pages/HMClassOnline/day18/animate/sharedTransition/sharedTransitionPageA",
+    "pages/HMClassOnline/day18/animate/sharedTransition/sharedTransitionPageB",
+    "pages/HMClassOnline/day18/gesture/LongPressGestureCase"
   ]
 }
