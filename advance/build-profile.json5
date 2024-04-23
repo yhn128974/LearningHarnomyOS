@@ -45,6 +45,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "library",
+      "srcPath": "./features/library",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

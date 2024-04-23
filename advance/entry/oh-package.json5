@@ -5,6 +5,9 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    //实现ability间的路由跳转需要在本ability中引入对跳转包的依赖
+    "@ohos/library": "file:../features/library"
+  }
 }
 

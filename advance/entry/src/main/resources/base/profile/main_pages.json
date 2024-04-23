@@ -51,6 +51,9 @@
     "pages/HMClassOnline/day16/NavigationCase",
     "pages/HMClassOnline/day16/NavigationCase2",
     "pages/HMClassOnline/day17/RouterCase/FromPageA",
-    "pages/HMClassOnline/day17/RouterCase/FromPageB"
+    "pages/HMClassOnline/day17/RouterCase/FromPageB",
+    "pages/HMClassOnline/day17/ModuleRouterCase/ModulePageA",
+    "pages/HMClassOnline/day17/LifeCircle/LifeCirclePageA",
+    "pages/HMClassOnline/day17/LifeCircle/LifeCirclePageB"
   ]
 }
