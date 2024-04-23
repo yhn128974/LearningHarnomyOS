@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "鸿蒙基础"
     },
     {
       "name": "EntryAbility1_desc",
@@ -18,6 +18,14 @@
     },
     {
       "name": "EntryAbility1_label",
+      "value": "鸿蒙基础"
+    },
+    {
+      "name": "PayAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "PayAbility_label",
       "value": "label"
     }
   ]

@@ -17,15 +17,19 @@
         "name": "ohos.permission.INTERNET",
       }
     ],
+
     "abilities": [
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:icon",
+        //更换图标
+        "icon": "$media:icon_harmonyos",
+        //HAP报名
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:icon_harmonyos",
         "startWindowBackground": "$color:start_window_background",
+        //        是否导出桌面图标
         "exported": true,
         "skills": [
           {
@@ -38,7 +42,27 @@
           }
         ]
       },
-
+      {
+        "name": "PayAbility",
+        "srcEntry": "./ets/payability/PayAbility.ets",
+        "description": "$string:PayAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:PayAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        //
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
     ]
   }
 }

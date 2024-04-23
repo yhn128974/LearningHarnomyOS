@@ -53,7 +53,9 @@
     "pages/HMClassOnline/day17/RouterCase/FromPageA",
     "pages/HMClassOnline/day17/RouterCase/FromPageB",
     "pages/HMClassOnline/day17/ModuleRouterCase/ModulePageA",
-    "pages/HMClassOnline/day17/LifeCircle/LifeCirclePageA",
-    "pages/HMClassOnline/day17/LifeCircle/LifeCirclePageB"
+    "pages/HMClassOnline/day17/PageLifeCircle/LifeCirclePageA",
+    "pages/HMClassOnline/day17/PageLifeCircle/LifeCirclePageB",
+    "pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/Payindex",
+    "pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/toPaymentPage_Page"
   ]
 }
