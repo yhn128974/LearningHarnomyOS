@@ -28,7 +28,7 @@ struct LifeCirclePageA {
           .fontWeight(FontWeight.Bold)
 
         Button('to Page B').onClick((event: ClickEvent) => {
-          router.replaceUrl({
+          router.pushUrl({
             url:'pages/HMClassOnline/day17/LifeCircle/LifeCirclePageB'
           })
         })

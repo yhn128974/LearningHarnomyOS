@@ -63,6 +63,11 @@
     "pages/HMClassOnline/day18/animate/TransitionCase",
     "pages/HMClassOnline/day18/animate/sharedTransition/sharedTransitionPageA",
     "pages/HMClassOnline/day18/animate/sharedTransition/sharedTransitionPageB",
-    "pages/HMClassOnline/day18/gesture/LongPressGestureCase"
+    "pages/HMClassOnline/day18/gesture/LongPressGestureCase",
+    "pages/HMClassOnline/day19/sandbox/DownLoadingCase",
+    "pages/HMClassOnline/day19/sandbox/HyBirdHotLoad",
+    "pages/HMClassOnline/day19/sandbox/webCase",
+    "pages/HMClassOnline/day19/videos/videoCase",
+    "pages/HMClassOnline/day19/videos/DouYing/DouYingPage1"
   ]
 }

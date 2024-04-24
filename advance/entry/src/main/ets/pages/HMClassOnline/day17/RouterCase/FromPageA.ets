@@ -53,7 +53,7 @@ struct FromPageA {
         })
 
         Button('to page B by replace').onClick((event: ClickEvent) => {
-          router.replaceUrl({
+          router.pushUrl({
             url: 'pages/HMClassOnline/day17/RouterCase/FromPageB',
             params: {
               name: 'LongYou',

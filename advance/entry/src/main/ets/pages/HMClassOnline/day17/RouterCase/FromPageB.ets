@@ -42,7 +42,7 @@ struct FromPageB {
           }, router.RouterMode.Single)
         })
         Button('to page A by replace').onClick(() => {
-          router.replaceUrl({ url: 'pages/HMClassOnline/day17/RouterCase/FromPageA' })
+          router.pushUrl({ url: 'pages/HMClassOnline/day17/RouterCase/FromPageA' })
         })
         Button('back to A').onClick((event: ClickEvent) => {
           // 注册一个检测事项

@@ -1,10 +1,19 @@
-import { promptAction } from '@kit.ArkUI';
+import { display, promptAction } from '@kit.ArkUI';
+
+
+enum SelectType {
+  DELETE,
+  TEXT,
+  NONE
+}
 
 @Entry
 @Component
 struct LongPressGestureCase {
   @State message: string = 'Hello World';
   @State showVoice: boolean = false
+  @State currentMode: SelectType = SelectType.NONE
+  @State screenWidth: number = 0
 
   @Builder
   bindContentCoverBuilder() {
@@ -13,7 +22,7 @@ struct LongPressGestureCase {
         Text('删除')
           .width(80)
           .aspectRatio(1)
-          .backgroundColor(Color.Gray)
+          .backgroundColor(this.currentMode === SelectType.DELETE ? Color.Red : Color.Gray)
           .fontSize(30)
           .fontColor(Color.White)
           .textAlign(TextAlign.Center)
@@ -24,7 +33,7 @@ struct LongPressGestureCase {
         Text('文本')
           .width(80)
           .aspectRatio(1)
-          .backgroundColor(Color.Gray)
+          .backgroundColor(this.currentMode === SelectType.TEXT ? Color.Red : Color.Gray)
           .fontSize(30)
           .fontColor(Color.White)
           .textAlign(TextAlign.Center)
@@ -45,24 +54,46 @@ struct LongPressGestureCase {
     .justifyContent(FlexAlign.Center)
   }
 
+  aboutToAppear(): void {
+    display.getAllDisplays().then(res => {
+      promptAction.showToast({
+        message: px2vp(res[0].width).toString(),
+        duration: 3000
+      })
+    })
+  }
+
   build() {
     Row() {
       Column() {
         Button('长安触发')
-          .gesture(
-            LongPressGesture()
-              .onAction(() => {
-                this.showVoice = true
-              })
-              .onActionEnd(() => {
-                this.showVoice = false
-              })
-
-          )
           .width('100%')
           .height(40)
           .type(ButtonType.Normal)
+          .gesture(
+            GestureGroup(
+              GestureMode.Parallel,
+              LongPressGesture()
+                .onAction(() => {
+                  this.showVoice = true
+                })
+                .onActionEnd(() => {
+                  this.showVoice = false
+                }),
+              PanGesture()
+                .onActionUpdate((event) => {
+                  if (event.fingerList[0].globalX < this.screenWidth / 2) {
+                    this.currentMode = SelectType.DELETE
+                  } else {
+                    this.currentMode = SelectType.TEXT
+                  }
+                })
+                .onActionEnd(() => {
+                  this.currentMode = SelectType.NONE
+                })
+            )
 
+          )
       }
       .width('100%')
       .justifyContent(FlexAlign.End)
@@ -72,6 +103,13 @@ struct LongPressGestureCase {
     .height('100%')
     .bindContentCover($$this.showVoice, this.bindContentCoverBuilder(), {
       modalTransition: ModalTransition.NONE
+    })
+    //最外层的容器宽高为100%,通过onAreaChange参数可以拿到屏幕的宽高
+    .onAreaChange((oldArea, newArea) => {
+      this.screenWidth = newArea.width as number
+      // promptAction.showToast({
+      //   message: this.screenWidth.toString()
+      // })
     })
   }
 }

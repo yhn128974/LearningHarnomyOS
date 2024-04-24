@@ -44,7 +44,6 @@ export const carInfo_localStorage: LocalStorage = new LocalStorage(carInfo)
 // const sharedStorage = new LocalStorage(user)
 
 export default class EntryAbility extends UIAbility {
-
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
   }
@@ -60,13 +59,12 @@ export default class EntryAbility extends UIAbility {
     // 根据用户首选项的 TokenManager.getToken(this.context)的存在来判断ability的入口
     // windowStage.loadContent(await TokenManager.getToken(this.context) ?'pages/HMClassOnline/day13/preferences/Pages/Home':'pages/HMClassOnline/day13/preferences/Pages/Login',,)
 
-    windowStage.loadContent('pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/toPaymentPage_Page', carInfo_localStorage, (err, data) => {
+    windowStage.loadContent('pages/HMClassOnline/day19/videos/DouYing/DouYingPage1', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-
 
       // 设置键盘避让
       windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE)
