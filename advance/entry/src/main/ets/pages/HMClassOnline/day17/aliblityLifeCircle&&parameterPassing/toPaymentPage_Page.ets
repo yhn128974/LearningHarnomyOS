@@ -42,7 +42,6 @@ struct ToPaymentPage_Page {
         Button('拉起payAbility并传递结果，并接收一个返回值').onClick(async () => {
           // 启动另一个ability
           let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-
           let want: Want = {
             deviceId: '', // deviceId为空表示本设备
             bundleName: 'com.example.myapplication',
@@ -53,11 +52,8 @@ struct ToPaymentPage_Page {
               "order_id": Date.now()
             }
           };
-
-
           // 启动一个Ability为了结果
           const res = await context.startAbilityForResult(want)
-
           AlertDialog.show({
             message: JSON.stringify(res)
           })

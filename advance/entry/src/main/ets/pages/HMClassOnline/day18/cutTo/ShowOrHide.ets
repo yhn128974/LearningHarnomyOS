@@ -12,8 +12,8 @@ struct ShowOrHide {
     Column() {
       Text(this.shownumber.toString()).position({ x: '100%' }).translate({ x: "-100%" })
       Text('there is the contentCover Content').translate({ y: '100%' })
-    }.backgroundColor(Color.White)
-
+    }
+    .backgroundColor(Color.White)
     .width('100%')
     .height('100%')
   }
@@ -45,8 +45,6 @@ struct ShowOrHide {
               clearTimeout(this.timer)
             }
           }, 1000)
-
-
         })
 
       }

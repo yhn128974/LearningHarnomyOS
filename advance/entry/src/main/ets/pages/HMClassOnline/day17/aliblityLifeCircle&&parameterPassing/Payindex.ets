@@ -16,7 +16,6 @@ struct Payindex {
 
         Button('支付').onClick((event: ClickEvent) => {
           let context = getContext() as common.UIAbilityContext
-
           let want: Want = {
             deviceId: '', // deviceId为空表示本设备
             bundleName: 'com.example.myapplication',

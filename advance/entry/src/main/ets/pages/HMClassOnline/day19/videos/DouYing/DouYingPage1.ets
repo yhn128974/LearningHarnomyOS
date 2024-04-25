@@ -1,4 +1,5 @@
 import { VideoItem, allData } from './models'
+import { Popup } from '@ohos.arkui.advanced.Popup';
 
 @Entry
 @Component
@@ -56,6 +57,7 @@ struct PlayVideo {
 
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
+
       Column() {
         Video({
           src: this.item.videoUrl,

@@ -2,7 +2,7 @@
 @Component
 struct NavigationCase {
   @State message: string = 'Hello World';
-
+  // api9 Navigation 方法
   build() {
     Navigation() {
       // NavRouter必须放两个页面最后一个必须是NavDestination

@@ -17,9 +17,9 @@
         "name": "ohos.permission.INTERNET",
       }
     ],
-
     "abilities": [
       {
+
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
@@ -29,7 +29,7 @@
         "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon_harmonyos",
         "startWindowBackground": "$color:start_window_background",
-        //        是否导出桌面图标
+        //是否导出桌面图标
         "exported": true,
         "skills": [
           {
@@ -51,17 +51,17 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         //
-//        "exported": true,
-//        "skills": [
-//          {
-//            "entities": [
-//              "entity.system.home"
-//            ],
-//            "actions": [
-//              "action.system.home"
-//            ]
-//          }
-//        ]
+        //        "exported": true,
+        //        "skills": [
+        //          {
+        //            "entities": [
+        //              "entity.system.home"
+        //            ],
+        //            "actions": [
+        //              "action.system.home"
+        //            ]
+        //          }
+        //        ]
       }
     ]
   }

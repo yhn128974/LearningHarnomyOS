@@ -13,7 +13,6 @@ struct LifeCirclePageB {
 
   }
 
-
   aboutToAppear(): void {
 
   }
@@ -21,6 +20,7 @@ struct LifeCirclePageB {
   aboutToDisappear(): void {
 
   }
+
   onBackPress(): boolean | void {
     this.GetpromptActionDialogIndex()
     return true
@@ -41,11 +41,11 @@ struct LifeCirclePageB {
         },]
     }).then(res => {
       AlertDialog.show({
-        message:res.index.toString()
+        message: res.index.toString()
       })
       if (res.index === 1) {
         router.back({
-          url:'pages/HMClassOnline/day17/LifeCircle/LifeCirclePageA'
+          url: 'pages/HMClassOnline/day17/LifeCircle/LifeCirclePageA'
         })
       }
     })

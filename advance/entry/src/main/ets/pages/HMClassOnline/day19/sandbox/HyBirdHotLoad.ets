@@ -19,6 +19,7 @@ struct HyBirdHotLoad {
     let options: zlib.Options = {
       level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
     }
+
     try {
       await zlib.decompressFile(filePath, outFileDir, options, (errData: BusinessError) => {
         if (errData !== null) {
@@ -48,10 +49,11 @@ struct HyBirdHotLoad {
     // file cache temp
     if (fileIo.listFileSync(getContext().filesDir).includes(fileName)) {
       //  存在目录,备份
-      await fileIo.renameSync(filePath, `${getContext().filesDir}/toutiao(back).zip`)
+      await fileIo.renameSync(filePath,`${getContext().filesDir}/toutiao(back).zip`)
       promptAction.showToast({
         message: `rename sucessed`
       })
+
       this.showloading = false
     } else {
       const task = await request.downloadFile(getContext(), {
@@ -69,10 +71,11 @@ struct HyBirdHotLoad {
       })
       task.on('complete', () => {
         this.showloading = false
-        this.thisDecompressFile(filePath)
         promptAction.showToast({
           message: `sucessed`
         })
+        this.thisDecompressFile(filePath)
+
       })
     }
   }
@@ -81,9 +84,10 @@ struct HyBirdHotLoad {
   getContextBuilder() {
     Column() {
       Progress({
-        value: 50,
-        total: 100
+        value: this.receivedSize,
+        total: this.totalSize
       }).width('100%')
+      Text(`${this.receivedSize}/${this.totalSize}`)
     }.width('100%').height('100%').backgroundColor('rgba(0,0,0,0.7)')
     .justifyContent(FlexAlign.Center)
   }
