@@ -1,0 +1,15 @@
+//全局配置信息
+
+{
+  "app": {
+    //    包名：域名倒置
+    "bundleName": "com.example.myapplication",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    //    应用图标
+    "icon": "$media:app_icon",
+    //    应用名
+    "label": "$string:app_name"
+  }
+}

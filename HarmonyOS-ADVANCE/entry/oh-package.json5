@@ -1,0 +1,13 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    //实现ability间的路由跳转需要在本ability中引入对跳转包的依赖
+    "@ohos/library": "file:../features/library"
+  }
+}
+

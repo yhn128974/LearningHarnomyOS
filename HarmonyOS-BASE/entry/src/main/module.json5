@@ -1,0 +1,58 @@
+{
+  "module": {
+    //    允许访问网络
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      }
+    ],
+    "name": "entry",
+    "type": "entry",
+    //    入口舞台
+    "srcEntry": "./ets/myabilityStage/MyAbilityStage.ts",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        //启动模式
+        "launchType": "multiton",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DocumentAbility",
+        "srcEntry": "./ets/documentability/DocumentAbility.ets",
+        "description": "$string:DocumentAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:DocumentAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "specified"
+      }
+    ]
+  }
+}
