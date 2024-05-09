@@ -1,11 +1,12 @@
 {
   "src": [
-    "pages/day04/router/UIAblility/Index",
-    "pages/day04/router/UIAblility/Second",
-    "pages/day04/router/UIAblility/Page1",
-    "pages/day05/life_circle/page01/Page01",
-    "pages/day05/life_circle/page02/Page2",
-    "pages/HarmonyOsCourse/simple_page_component/animation/animation",
-    "pages/HarmonyOsCourse/index"
+    "pages/class/day04/router/UIAblility/Index",
+    "pages/class/day04/router/UIAblility/Second",
+    "pages/class/day04/router/UIAblility/Page1",
+    "pages/class/day05/life_circle/page01/Page01",
+    "pages/class/day05/life_circle/page02/Page2",
+    "pages/class/HarmonyOsCourse/simple_page_component/animation/animation",
+    "pages/class/HarmonyOsCourse/index",
+    "pages/ClassOnline/day01/pageDemo"
   ]
 }
