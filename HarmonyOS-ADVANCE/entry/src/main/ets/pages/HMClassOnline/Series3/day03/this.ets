@@ -74,7 +74,7 @@ struct TestItem {
   build() {
     Column() {
       Text(this.item.name)
-      TextInput({ text: $$this.item.name }).onChange(()=>{
+      TextInput({ text: this.item.name }).onChange(()=>{
         this.showChangename()
       })
     }

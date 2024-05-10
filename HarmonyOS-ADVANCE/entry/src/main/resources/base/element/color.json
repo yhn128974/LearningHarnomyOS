@@ -55,6 +55,18 @@
     {
       "name": "font_main_color",
       "value": "#ff8000"
+    },
+    {
+      "name": "text_color",
+      "value": "#000"
+    },
+    {
+      "name": "button_background",
+      "value": "#00f"
+    },
+    {
+      "name": "page_background",
+      "value": "#fff"
     }
   ]
 }

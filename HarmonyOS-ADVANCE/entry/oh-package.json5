@@ -6,8 +6,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    //实现ability间的路由跳转需要在本ability中引入对跳转包的依赖
-    "@ohos/library": "file:../features/library"
-  }
+    "library1": "file:../library1/build/default/outputs/default/library1.har",
+    "sharedlibrary": "file:../sharedlibrary/build/default/outputs/default/sharedlibrary-default.tgz"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
 }
-

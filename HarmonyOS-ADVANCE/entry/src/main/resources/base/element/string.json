@@ -27,6 +27,14 @@
     {
       "name": "PayAbility_label",
       "value": "label"
+    },
+    {
+      "name": "button",
+      "value": "HandleThis"
+    },
+    {
+      "name": "get_string_value",
+      "value": "get_string_value"
     }
   ]
 }

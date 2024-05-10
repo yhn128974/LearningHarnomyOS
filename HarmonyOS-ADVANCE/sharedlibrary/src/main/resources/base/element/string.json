@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description from sharedLibrary"
+    },
+    {
+      "name": "library_title",
+      "value": "this is library_title"
+    }
+  ]
+}
