@@ -12,6 +12,7 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    //    需要的权限配置
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET",
@@ -19,7 +20,6 @@
     ],
     "abilities": [
       {
-
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
@@ -50,6 +50,7 @@
         "label": "$string:PayAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
+        "launchType": 'singleton'
         //
         //        "exported": true,
         //        "skills": [

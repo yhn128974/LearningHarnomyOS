@@ -9,6 +9,7 @@ export class TokenManager {
 
   static async setToken(token: string, context?: Context) {
     const store = await TokenManager.getStore(context)
+
     store.putSync("my_token", token) // 同步写入内容
     // 写入磁盘
     await store.flush()
@@ -16,6 +17,7 @@ export class TokenManager {
 
   static async getToken(context?: Context) {
     const store = await TokenManager.getStore(context)
+
     return store.getSync("my_token", "") as string
   }
 }

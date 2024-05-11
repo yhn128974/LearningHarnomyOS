@@ -2,7 +2,7 @@
 import { MainPage } from 'library1';
 import { Log } from 'library1';
 import { func } from 'library1';
-
+import {ResManager} from 'library1'
 @Entry
 @Component
 struct Index {
@@ -40,8 +40,9 @@ struct Index {
         })
 
       Divider()
-      // 引入本地har资源失败
-      // Text($r('app.string.hello_har'))
+      // 引入本地har资源
+      Text($r('app.string.hello_har'))
+      Text(ResManager.getDesc())
     }
     .width('100%')
     .backgroundColor($r('app.color.page_background'))

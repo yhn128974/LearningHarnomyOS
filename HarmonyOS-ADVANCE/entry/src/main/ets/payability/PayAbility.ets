@@ -23,7 +23,7 @@ export default class PayAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/HMClassOnline/day17/aliblityLifeCircle&&parameterPassing/Payindex', (err) => {
+    windowStage.loadContent('pages/HMClassOnline/Series2/day17/aliblityLifeCircle&&parameterPassing/Payindex', (err) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

@@ -14,6 +14,7 @@ struct Payindex {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
 
+        // 返回结果
         Button('支付').onClick((event: ClickEvent) => {
           let context = getContext() as common.UIAbilityContext
           let want: Want = {
@@ -26,12 +27,19 @@ struct Payindex {
               "pay_result": true
             }
           };
-
           context.terminateSelfWithResult({
             resultCode: 200,
             want: want
           })
         })
+
+      //   触发线程事件
+        Button('触发线程事件').onClick((event: ClickEvent) => {
+          let context = getContext(this) as common.UIAbilityContext;
+          context.eventHub.emit('event01',10,20)
+        })
+
+
       }
       .width('100%')
     }

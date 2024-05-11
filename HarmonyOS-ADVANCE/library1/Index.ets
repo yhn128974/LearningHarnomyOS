@@ -3,3 +3,4 @@ export { MainPage } from './src/main/ets/components/mainpage/MainPage'
 export { Log } from './src/main/ets/ts/test';
 export { func } from './src/main/ets/ts/test';
 export { func2 } from './src/main/ets/ts/test';
+export {ResManager} from './src/main/ets/ResManager'

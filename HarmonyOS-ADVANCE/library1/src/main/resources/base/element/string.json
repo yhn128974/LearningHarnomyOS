@@ -6,6 +6,10 @@
     },{
       "name": "hello_har",
       "value": "hello_HarmonyOS"
+    },
+    {
+      "name": "shared_desc",
+      "value": "context from har"
     }
   ]
 }
