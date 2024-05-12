@@ -70,7 +70,7 @@ export default class EntryAbility extends UIAbility {
     // 根据用户首选项的 TokenManager.getToken(this.context)的存在来判断ability的入口
     // windowStage.loadContent(await TokenManager.getToken(this.context) ?'pages/HMClassOnline/day13/preferences/Pages/Home':'pages/HMClassOnline/day13/preferences/Pages/Login',,)
 
-    windowStage.loadContent('pages/HMClassOnline/Series2/day17/aliblityLifeCircle&&parameterPassing/toPaymentPagePage', carInfo_localStorage, (err, data) => {
+    windowStage.loadContent('pages/HuaWeiOnline/Preferences/PerferencesCase01', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
