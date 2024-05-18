@@ -8,7 +8,6 @@ const DOMAIN_NUMBER: number = 0xFF00;
 @Entry
 @Component
 struct Page_Context {
-
   // Context的典型使用场景
   // 本章节通过如下典型场景来介绍Context的用法：
   //
@@ -54,7 +53,10 @@ struct Page_Context {
       // 此路径是HAP相关信息推荐的存放路径，这些文件会跟随HAP的卸载而删除，但不会影响应用级别路径的文件，除非该应用的HAP已全部卸载。
       Button('获取UIAbility文件')
         .onClick(() => {
+
           let context = getContext(this) as common.UIAbilityContext;
+
+
           let cacheDir = context.cacheDir;
           let tempDir = context.tempDir;
           let filesDir = context.filesDir;

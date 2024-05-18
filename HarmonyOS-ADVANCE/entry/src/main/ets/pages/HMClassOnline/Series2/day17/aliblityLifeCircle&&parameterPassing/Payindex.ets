@@ -33,6 +33,7 @@ struct Payindex {
           })
         })
 
+
       //   触发线程事件
         Button('触发线程事件').onClick((event: ClickEvent) => {
           let context = getContext(this) as common.UIAbilityContext;

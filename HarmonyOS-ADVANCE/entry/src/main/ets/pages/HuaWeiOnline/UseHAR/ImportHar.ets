@@ -1,8 +1,6 @@
 // entry/src/main/ets/pages/IndexSec.ets
-import { MainPage } from 'library1';
-import { Log } from 'library1';
-import { func } from 'library1';
-import {ResManager} from 'library1'
+import { MainPage, Log, func, ResManager } from 'library1';
+
 @Entry
 @Component
 struct Index {
@@ -10,7 +8,9 @@ struct Index {
 
   build() {
     Column() {
+      // Har页面
       MainPage().height('50%')
+
       Text(this.message)
         .fontFamily('HarmonyHeiTi')
         .fontWeight(FontWeight.Bold)

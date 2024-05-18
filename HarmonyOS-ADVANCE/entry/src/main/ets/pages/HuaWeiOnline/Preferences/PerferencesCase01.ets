@@ -5,10 +5,12 @@ import { Person, PersonModel } from './models'
 @Entry
 @Component
 struct Index {
+
   @State message: string = 'Hello World';
   @State myPersonList: PersonModel[] = [new PersonModel({} as Person)]
 
   aboutToAppear(): void {
+  
     this.getPersonList()
   }
 
@@ -46,11 +48,26 @@ struct Index {
           ForEach(this.myPersonList, (item: PersonModel) => {
             ListItem() {
               Row() {
-                Text(item.name)
+                Text(item.name).fontSize(20).fontWeight(600).fontStyle(FontStyle.Italic)
               }
             }
           })
         }
+
+        Button('delete onePerson').onClick(async (event: ClickEvent) => {
+          PersonStore.deleteStoreItem('Alice')
+          this.myPersonList = await PersonStore.getStoreList()
+        })
+
+        Button('clear PersonStore').onClick(async (event: ClickEvent) => {
+          PersonStore.clearStore()
+          this.myPersonList = await PersonStore.getStoreList()
+        })
+
+        Button('delete PersonStore').onClick(async (event: ClickEvent) => {
+          PersonStore.deleteStore()
+          this.myPersonList = await PersonStore.getStoreList()
+        })
 
       }
       .width('100%')

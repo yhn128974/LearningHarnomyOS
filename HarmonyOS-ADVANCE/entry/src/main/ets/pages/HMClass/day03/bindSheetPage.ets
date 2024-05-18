@@ -10,7 +10,7 @@ struct BindSheetPage {
       Button('点击关闭模态').onClick((event: ClickEvent) => {
         this.isShowBindsheet = false
       })
-    }.backgroundColor(Color.Pink).height(400).width('100%')
+    }.backgroundColor(Color.Pink).height(400).width('100%').borderRadius(0)
   }
 
   build() {
@@ -35,7 +35,6 @@ struct BindSheetPage {
           }
         }
         )
-
       }
       .width('100%')
     }

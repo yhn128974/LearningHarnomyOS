@@ -1,6 +1,7 @@
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { KeyboardAvoidMode, window, } from '@kit.ArkUI';
+import { preferences } from '@kit.ArkData';
 
 
 export interface Car {
@@ -35,9 +36,20 @@ export const carInfo_localStorage: LocalStorage = new LocalStorage(carInfo)
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+
   }
 
   async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {
+    // 获取权限
+    const manager = abilityAccessCtrl.createAtManager()
+    await manager.requestPermissionsFromUser(this.context,
+      [
+        "ohos.permission.APPROXIMATELY_LOCATION",
+        "ohos.permission.INTERNET"
+      ])
+
+
+
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
@@ -70,7 +82,7 @@ export default class EntryAbility extends UIAbility {
     // 根据用户首选项的 TokenManager.getToken(this.context)的存在来判断ability的入口
     // windowStage.loadContent(await TokenManager.getToken(this.context) ?'pages/HMClassOnline/day13/preferences/Pages/Home':'pages/HMClassOnline/day13/preferences/Pages/Login',,)
 
-    windowStage.loadContent('pages/HuaWeiOnline/Preferences/PerferencesCase01', carInfo_localStorage, (err, data) => {
+    windowStage.loadContent('pages/HMClassOnline/Series3/day08/http/AxiosCase01', carInfo_localStorage, (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

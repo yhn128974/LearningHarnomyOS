@@ -30,6 +30,7 @@ export default class EntryAbility extends UIAbility {
 struct Page_Context {
   private context = getContext(this) as common.UIAbilityContext;
 
+
   build() {
     Column() {
       Button()

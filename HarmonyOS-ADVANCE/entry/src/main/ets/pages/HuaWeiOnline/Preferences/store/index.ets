@@ -10,7 +10,12 @@ export class PersonStore {
   }
 
   static async deleteStore() {
-    dataPreferences.deletePreferences(PersonStore.context || getContext(), { name: 'PersonStore' })
+    dataPreferences.deletePreferences(PersonStore.context || getContext(), { name: 'PersonStore' }).then(() => {
+      promptAction.showToast({
+        message: 'deleted all PersonList Message'
+      })
+    })
+
   }
 
   static async clearStore() {
@@ -31,7 +36,10 @@ export class PersonStore {
 
   static async getStoreList() {
     let thisStore = await PersonStore.getStore()
+
     let ListObject = thisStore.getAllSync() as object
+    console.log("ListObject", JSON.stringify(ListObject))
+
     if (ListObject) {
       // 格式转换
       const listArray = Object.values(ListObject).map((item: string) => JSON.parse(item) as PersonModel)
