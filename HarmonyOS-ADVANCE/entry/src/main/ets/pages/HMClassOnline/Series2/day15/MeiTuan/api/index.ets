@@ -5,7 +5,7 @@ import { promptAction } from '@kit.ArkUI';
 
 export const CategoryInfoList = async () => {
   try {
-    const response: AxiosResponse = await axios.get<object, AxiosResponse<object>, null>('https://zhoushugang.gitee.io/fe2022/takeaway.json');
+    const response: AxiosResponse = await axios.get<object, AxiosResponse<object>, null>('https://zhousg.atomgit.net/harmonyos-next/takeaway.json');
 
     return response.data
   }

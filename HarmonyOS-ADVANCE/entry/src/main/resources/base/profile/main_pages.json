@@ -77,6 +77,23 @@
     "pages/HuaWeiOnline/Preferences/PerferencesCase01",
     "pages/HMClassOnline/Series3/day08/AppStorage/Case01",
     "pages/HMClassOnline/Series3/day08/AppStorage/Case02",
-    "pages/HMClassOnline/Series3/day08/http/AxiosCase01"
+    "pages/HMClassOnline/Series3/day08/http/AxiosCase01",
+    "pages/HMClassOnline/Series3/day10/SaftAreaCase",
+    "pages/HMClassOnline/Series3/day12/router/RouterCase01",
+    "pages/HMClassOnline/Series3/day12/router/RouterCase02",
+    "pages/HMClassOnline/Series3/day12/ModuleRouter/RouterBundleCase",
+    "pages/HMClassOnline/Series3/day12/abilityRouter/entryabilityPage",
+    "pages/HMClassOnline/Series3/day12/abilityRouter/payabilityPage",
+    "pages/HMClassOnline/Series3/day13/animation/SharedElementCase01",
+    "pages/HMClassOnline/Series3/day13/animation/SharedElementCase02",
+    "pages/HMClassOnline/Series3/day13/PageTransition/PageTransitionPage1",
+    "pages/HMClassOnline/Series3/day13/PageTransition/PageTransitionPage2",
+    "pages/HMClassOnline/Series3/day13/Gesture/GestureCase",
+    "pages/HMClassOnline/Series3/day14/DownloadCase",
+    "pages/HMClassOnline/Series3/day14/HyBridHotLoad",
+    "pages/HMClassOnline/Series3/day14/WebZibCase",
+    "pages/HMClassOnline/Series3/day14/video/VideoCase01",
+    "pages/HMClassOnline/Series3/day14/video/VideoControlCase",
+    "pages/HMClassOnline/Series3/day14/video/DuoYing"
   ]
 }

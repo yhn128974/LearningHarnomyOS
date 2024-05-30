@@ -6,9 +6,10 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "library1": "file:../library1/build/default/outputs/default/library1.har",
-    "sharedlibrary": "file:../sharedlibrary/build/default/outputs/default/sharedlibrary-default.tgz"
+    "library1": "file:../library1",
+    "sharedlibrary": "file:../sharedlibrary"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "dynamicDependencies": {}
 }

@@ -29,7 +29,8 @@ export default struct MTCart {
 
         Column({
           space: 20
-        }) {
+        })
+        {
           List() {
             ForEach(this.userCard || [], (item: FoodItem) => {
               ListItem() {

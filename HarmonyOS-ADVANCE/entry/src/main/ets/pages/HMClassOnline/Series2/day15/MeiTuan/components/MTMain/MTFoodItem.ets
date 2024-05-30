@@ -1,10 +1,10 @@
 import { FoodItem } from '../../models'
 import MTAddCut from '../MTAddCut'
+
 @Preview
 @Component
 struct MTFoodItem {
   @Prop Item: FoodItem
-
 
   build() {
     Row() {
@@ -49,8 +49,9 @@ struct MTFoodItem {
               .fontColor($r("app.color.font_main_color"))
               .fontWeight(FontWeight.Bold)
           }
+
           MTAddCut({
-            foodItem:this.Item
+            foodItem: this.Item
           })
         }
         .justifyContent(FlexAlign.SpaceBetween)

@@ -15,6 +15,11 @@ export default class PayAbility extends UIAbility {
     AppStorage.setOrCreate("order_id", want.parameters!['order_id'])
   }
 
+  onBackPressed(): boolean {
+    // 回到原来的ability时:候是否保留当前ability存活, true不销毁,下次直接打开,默认为false,下次重新创建ability
+    return true
+  }
+
   onDestroy(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
   }
@@ -23,7 +28,7 @@ export default class PayAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
-    windowStage.loadContent('pages/HMClassOnline/Series2/day17/aliblityLifeCircle&&parameterPassing/Payindex', (err) => {
+    windowStage.loadContent('pages/HMClassOnline/Series3/day12/abilityRouter/payabilityPage', (err) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

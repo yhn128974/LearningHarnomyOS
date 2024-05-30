@@ -1,8 +1,7 @@
-@Entry
+@Entry({routeName:'hsp-test'})
 @Component
-struct Index {
+export struct IndexPage {
   @State message: string = 'Hello World';
-
   build() {
     Row() {
       Column() {

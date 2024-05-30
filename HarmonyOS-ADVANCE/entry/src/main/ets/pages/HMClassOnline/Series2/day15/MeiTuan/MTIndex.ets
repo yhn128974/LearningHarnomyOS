@@ -17,12 +17,15 @@ struct MTIndex {
   @State voidtopheight: number = 0
 
   async aboutToAppear(): Promise<void> {
+
     this.getCategoryList()
+
     this.userCard = CartStore.getCarts()
 
     // 沉浸式方法一
     // 获取页面window对象
     const win = await window.getLastWindow(getContext())
+
     // 局部关闭全屏
     // win.setWindowLayoutFullScreen(false)
 
@@ -32,7 +35,9 @@ struct MTIndex {
     // this.voidtopheight = AppStorage.get('VoidTopHeight') as number
 
     // 沉浸式方法二
-    win.setWindowBackgroundColor('#ffc0cb')
+    // win.setWindowBackgroundColor('#ffc0cb')
+
+
   }
 
   async getCategoryList() {
@@ -51,7 +56,6 @@ struct MTIndex {
         .height("100%").width('100%')
 
         if (this.showCart) {
-
           MTCart()
         }
         MTBottom()

@@ -20,7 +20,6 @@ struct MTCartItem {
         Text(this.fooditem.name)
         Row() {
           Text() {
-
             Span('¥ ')
               .fontColor($r("app.color.font_main_color"))
               .fontSize(10)
