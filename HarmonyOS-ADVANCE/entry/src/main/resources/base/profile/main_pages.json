@@ -94,6 +94,7 @@
     "pages/HMClassOnline/Series3/day14/WebZibCase",
     "pages/HMClassOnline/Series3/day14/video/VideoCase01",
     "pages/HMClassOnline/Series3/day14/video/VideoControlCase",
-    "pages/HMClassOnline/Series3/day14/video/DuoYing"
+    "pages/HMClassOnline/Series3/day14/video/DuoYing",
+    "pages/HMClassOnline/Series3/WebControlDemo/webControlerCase"
   ]
 }
