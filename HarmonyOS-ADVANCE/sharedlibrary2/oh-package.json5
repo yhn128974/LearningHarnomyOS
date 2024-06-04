@@ -1,9 +1,12 @@
 {
-  "name": "library1",
+  "name": "sharedlibrary2",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
-  "dependencies": {}
+  "packageType": "InterfaceHar",
+  "dependencies": {
+    "staticlibrary": "file:../staticlibrary"
+  }
 }

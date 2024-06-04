@@ -1,5 +1,5 @@
 // entry/src/main/ets/pages/IndexSec.ets
-import { MainPage, Log, func, ResManager } from 'library1';
+import { MainPage, LibraryLog, func, ResManager } from 'library1';
 
 @Entry
 @Component
@@ -35,7 +35,7 @@ struct Index {
         .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
           // 引用HAR的类和方法
-          Log.info('har msg');
+          LibraryLog.info('har msg');
           this.message = 'func return: ' + func();
         })
 

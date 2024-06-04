@@ -47,8 +47,8 @@
       ]
     },
     {
-      "name": "library1",
-      "srcPath": "./library1",
+      "name": "staticlibrary",
+      "srcPath": "./staticlibrary"
     },
     {
       "name": "sharedlibrary",
@@ -62,5 +62,17 @@
         }
       ]
     },
+    {
+      "name": "sharedlibrary2",
+      "srcPath": "./sharedlibrary2",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
   ]
 }

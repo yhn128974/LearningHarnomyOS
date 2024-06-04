@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "library1",
+    "name": "staticlibrary",
     "type": "har",
     "deviceTypes": [
       "default",

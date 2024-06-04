@@ -6,8 +6,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "library1": "file:../library1",
-    "sharedlibrary": "file:../sharedlibrary"
+    "staticlibrary": "file:../staticlibrary",
+    "sharedlibrary": "file:../sharedlibrary",
+    "sharedlibrary1": "file:../sharedlibrary2"
   },
   "devDependencies": {
   },

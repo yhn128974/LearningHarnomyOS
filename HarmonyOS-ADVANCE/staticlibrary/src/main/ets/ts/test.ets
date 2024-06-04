@@ -1,5 +1,5 @@
 // library/src/main/ts/test.ets
-export class Log {
+export class LibraryLog {
   static info(msg: string) {
     console.info(msg);
   }

@@ -1,13 +1,8 @@
-import { LibraryLog } from 'library1';
-
-@Entry({routeName:'hsp-test'})
+@Entry
 @Component
-export struct IndexPage {
+struct Index {
   @State message: string = 'Hello World';
-  aboutToAppear(): void {
-    LibraryLog
 
-  }
   build() {
     Row() {
       Column() {
