@@ -7,7 +7,7 @@ interface tabinfoInterFace {
 
 @Entry
 @Component
-struct Index {
+struct CreateFileCase {
   // 默认选中 0
   @State currentIndex: number = 0
   @State tabInfomation: tabinfoInterFace[] = [{

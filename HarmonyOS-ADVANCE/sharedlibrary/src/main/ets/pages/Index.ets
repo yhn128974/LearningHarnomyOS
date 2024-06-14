@@ -1,4 +1,4 @@
-import { LibraryLog } from 'library1';
+import { LibraryLog } from 'staticlibrary';
 
 @Entry({routeName:'hsp-test'})
 @Component

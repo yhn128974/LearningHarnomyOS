@@ -21,7 +21,7 @@ class LogNotTrack {
 @Entry
 @Component
 //@Track应用于class对象的属性级更新。@Track装饰的属性变化时，只会触发该属性关联的UI更新。
-struct AddLog {
+struct AddLog01 {
   @State logTrack: LogTrack = new LogTrack('Hello');
   @State logNotTrack: LogNotTrack = new LogNotTrack('你好');
 

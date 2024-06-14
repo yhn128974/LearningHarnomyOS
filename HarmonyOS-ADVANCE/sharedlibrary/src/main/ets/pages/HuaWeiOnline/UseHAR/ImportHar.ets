@@ -1,5 +1,5 @@
 // entry/src/main/ets/pages/IndexSec.ets
-import { MainPage, LibraryLog, func, ResManager } from 'library1';
+import { MainPage, LibraryLog, func, ResManager } from 'staticlibrary';
 
 @Entry
 @Component
@@ -22,7 +22,7 @@ struct Index {
         .width('624px')
 
       //引用HAR的ts类和方法
-      Button($r('app.string.button'))
+      Button($r('app.string.shared_desc'))
         .id('button')
         .height(48)
         .width('624px')
@@ -30,7 +30,6 @@ struct Index {
         .type(ButtonType.Capsule)
         .fontFamily('HarmonyHeiTi')
         .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
-        .backgroundColor($r('app.color.button_background'))
         .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
         .fontSize($r('sys.float.ohos_id_text_size_button1'))
         .onClick(() => {
@@ -45,7 +44,7 @@ struct Index {
       Text(ResManager.getDesc())
     }
     .width('100%')
-    .backgroundColor($r('app.color.page_background'))
+    .backgroundColor($r('app.color.text_color'))
     .height('100%')
   }
 }

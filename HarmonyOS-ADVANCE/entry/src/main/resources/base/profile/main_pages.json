@@ -73,8 +73,6 @@
     "pages/HMClassOnline/Series3/day02/FocusEventExample",
     "pages/HMClassOnline/Series3/day02/FileAndSandbox",
     "pages/HMClassOnline/Series3/day03/this",
-    "pages/HuaWeiOnline/UseHAR/ImportHar",
-    "pages/HuaWeiOnline/Preferences/PerferencesCase01",
     "pages/HMClassOnline/Series3/day08/AppStorage/Case01",
     "pages/HMClassOnline/Series3/day08/AppStorage/Case02",
     "pages/HMClassOnline/Series3/day08/http/AxiosCase01",
@@ -96,5 +94,6 @@
     "pages/HMClassOnline/Series3/day14/video/VideoControlCase",
     "pages/HMClassOnline/Series3/day14/video/DuoYing",
     "pages/HMClassOnline/Series3/WebControlDemo/webControlerCase"
+
   ]
 }

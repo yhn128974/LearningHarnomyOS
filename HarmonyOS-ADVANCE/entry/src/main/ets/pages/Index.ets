@@ -1,5 +1,5 @@
 import { router } from '@kit.ArkUI';
-
+import {GetFileList,CreateFileCase} from 'sharedlibrary'
 @Entry
 @Component
 struct Index {
@@ -8,11 +8,15 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Scroll() {
-          Button('点击跳转').onClick((event: ClickEvent) => {
-            router.pushUrl({ url: 'pages/Class/day09/HTTP' })
-          })
-        }
+        CreateFileCase()
+
+        GetFileList()
+
+        // Scroll() {
+        //   Button('点击跳转').onClick((event: ClickEvent) => {
+        //     router.pushUrl({ url: 'pages/Class/day09/HTTP' })
+        //   })
+        // }
       }
       .width('100%')
     }

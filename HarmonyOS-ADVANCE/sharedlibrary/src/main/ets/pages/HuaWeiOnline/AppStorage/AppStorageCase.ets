@@ -1,5 +1,5 @@
 @Component
-struct LinkLinkChild {
+struct LinkLinkChild01 {
   @StorageLink("testNum") @Watch("testNumChange") newdata: TESTNUMBERMODELS = new TESTNUMBERMODELS({} as TESTNUMBER)
 
   testNumChange(propName: string): void {
@@ -12,7 +12,7 @@ struct LinkLinkChild {
 }
 
 @Component
-struct PropLinkChild {
+struct PropLinkChild01 {
   @StorageProp("testNum") @Watch("testNumChange") newdata: TESTNUMBERMODELS = new TESTNUMBERMODELS({} as TESTNUMBER)
 
   testNumChange(propName: string): void {
@@ -30,7 +30,7 @@ struct PropLinkChild {
 }
 
 @Component
-struct Sibling {
+struct Sibling01 {
   @StorageLink("testNum") @Watch("testNumChange") newdata: TESTNUMBERMODELS = new TESTNUMBERMODELS({} as TESTNUMBER)
 
   testNumChange(propName: string): void {
@@ -43,7 +43,7 @@ struct Sibling {
 }
 
 @Component
-struct LinkChild {
+struct LinkChild02 {
   @StorageLink("testNum") @Watch("testNumChange") newdata: TESTNUMBERMODELS = new TESTNUMBERMODELS({} as TESTNUMBER)
 
   testNumChange(propName: string): void {
@@ -59,10 +59,10 @@ struct LinkChild {
           console.log(`LinkChild: after value change value ${this.newdata.testNumber}`);
         })
       Text(`LinkChild: ${this.newdata.testNumber}`)
-      LinkLinkChild({
+      PropLinkChild01({
         /* empty */
       })
-      PropLinkChild({
+      PropLinkChild01({
         /* empty */
       })
     }
@@ -85,7 +85,7 @@ class TESTNUMBERMODELS implements TESTNUMBER {
 
 @Entry
 @Component
-struct Parent {
+struct Parent01 {
   @StorageLink("testNum") @Watch("testNumChange1") newdata: TESTNUMBERMODELS = new TESTNUMBERMODELS({} as TESTNUMBER)
 
   aboutToAppear(): void {
@@ -102,10 +102,10 @@ struct Parent {
 
   build() {
     Column() {
-      LinkChild({
+      LinkLinkChild01({
         /* empty */
       })
-      Sibling({
+      Sibling01({
         /* empty */
       })
     }

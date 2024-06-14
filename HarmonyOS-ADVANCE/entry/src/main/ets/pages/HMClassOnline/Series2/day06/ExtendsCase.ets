@@ -10,7 +10,7 @@ struct ExtendsCase {
         space: 10
       }) {
         Text(this.message)
-          .TextStyle(Color.Pink, this.isenabled)
+          .TextStyleExtend(Color.Pink, this.isenabled)
         Button('点击禁用').onClick((event: ClickEvent) => {
           this.isenabled = !this.isenabled
         })
@@ -36,7 +36,7 @@ struct ExtendsCase {
 }
 
 @Extend(Text)
-function TextStyle(backgroundColor: Color, Statenable: boolean) {
+function TextStyleExtend(backgroundColor: Color, Statenable: boolean) {
   .fontSize(50)
   .fontWeight(FontWeight.Bold)
   .backgroundColor(backgroundColor)

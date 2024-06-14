@@ -7,6 +7,6 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
-    "staticlibrary": "file:../staticlibrary"
+    "staticlibrary": "file:../staticlibrary "
   }
 }

@@ -19,6 +19,7 @@ struct HyBridHotLoad {
 
     // 判断一下 我们的目录是否已经有了这个
     const filePath = getContext().filesDir + '/' + fileName
+
     // file cache temp
     if (fileIo.listFileSync(getContext().filesDir).includes(fileName)) {
       // 沙箱目录下已经有了这个文件
@@ -37,19 +38,20 @@ struct HyBridHotLoad {
       // 总计
       this.totalValue = total
     })
+
     task.on("fail", (error) => {
       AlertDialog.show({ message: error.toString() })
     })
+
     task.on("complete", () => {
       this.showLoading = false
       promptAction.showToast({ message: '下载成功' })
+
       this.filePath = filePath
       this.decompressFile()
     })
 
-
   }
-
   // 解压文件
   async decompressFile() {
     try {
