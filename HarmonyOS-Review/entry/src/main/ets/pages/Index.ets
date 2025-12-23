@@ -1,27 +1,23 @@
+import { promptAction, PromptAction } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World';
-
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
+    Column() {
+      Text("hello harmony")
+        .fontSize(50)
+        .fontColor(Color.Red)
+        .backgroundColor(Color.Gray)
+        .width("100%")
+        .height(100)
 
-          this.message = 'Welcome';
-        })
-      Row(){
-        Text('hello world')
-      }
+      Button('i am button').onClick(() => {
+    
+      })
     }
-    .height('100%')
     .width('100%')
+    .height('100%')
+
   }
 }

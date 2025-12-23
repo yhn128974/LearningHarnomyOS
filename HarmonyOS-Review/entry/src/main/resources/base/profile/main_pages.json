@@ -1,5 +1,9 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "pages/componentView/customComponent",
+    "pages/componentView/linearLayout",
+    "pages/componentView/BaiduPage",
+    "pages/componentView/StackComponent"
   ]
 }
