@@ -43,7 +43,13 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        //配置网络权限
+        "name": "ohos.permission.INTERNET"
       }
     ]
   }

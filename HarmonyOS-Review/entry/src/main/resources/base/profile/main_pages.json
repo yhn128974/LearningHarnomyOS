@@ -4,6 +4,23 @@
     "pages/componentView/customComponent",
     "pages/componentView/linearLayout",
     "pages/componentView/BaiduPage",
-    "pages/componentView/StackComponent"
-  ]
+    "pages/componentView/StackComponent",
+    "pages/componentView/FlexPage",
+    "pages/componentView/GridPage",
+    "pages/componentView/RelativePage",
+    "pages/componentView/ScrollPage",
+    "pages/evenListenning/InputPage",
+    "pages/evenListenning/localPage",
+    "pages/evenListenning/ObservedPage",
+    "pages/evenListenning/PXVPPage",
+    "pages/evenListenning/ImageIPage",
+    "pages/resorcesManger/FontAndColorPage",
+    "pages/style/stylePage",
+    "pages/page rendering/TogglePage",
+    "pages/page rendering/forEatchPage",
+    "pages/caseOneZiHu/MainPage"
+  ],
+  "window": {
+    "designWidth": 720
+  }
 }
