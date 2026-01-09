@@ -23,6 +23,10 @@
     {
       "name": "FoodAbility_label",
       "value": "label"
+    },
+    {
+      "name": "permission_location",
+      "value": "申请位置权限"
     }
   ]
 }

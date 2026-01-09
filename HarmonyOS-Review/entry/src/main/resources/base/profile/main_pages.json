@@ -33,7 +33,9 @@
     "pages/parameterPassing/AppStorage/page/InfoPage",
     "pages/parameterPassing/AppStorage/page/homePage",
     "pages/foodAbilityPages/indexPage",
-    "pages/LIFECIRICLE/PageCirclePage"
+    "pages/LIFECIRICLE/PageCirclePage",
+    "pages/persmission/PermissionPage",
+    "pages/http/httpPage"
   ],
   "window": {
     "designWidth": 720
