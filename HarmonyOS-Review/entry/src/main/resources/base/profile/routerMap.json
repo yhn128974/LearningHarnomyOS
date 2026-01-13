@@ -1,0 +1,17 @@
+{
+  "routerMap": [
+    {
+      "name": "my",
+      "pageSourceFile": "src/main/ets/pages/navigation/NavDestination/My.ets",
+      "buildFunction": "myBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "list",
+      "pageSourceFile": "src/main/ets/pages/navigation/NavDestination/MyList.ets",
+      "buildFunction": "myListBuilder"
+    }
+  ]
+}

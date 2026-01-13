@@ -35,7 +35,16 @@
     "pages/foodAbilityPages/indexPage",
     "pages/LIFECIRICLE/PageCirclePage",
     "pages/persmission/PermissionPage",
-    "pages/http/httpPage"
+    "pages/http/httpPage",
+    "pages/router/routerPage1",
+    "pages/router/routerPage2",
+    "pages/navigation/mianNavigationPage",
+    "pages/ animation/animiationPage",
+    "pages/ animation/animiationPage2",
+    "pages/ animation/animationPage3",
+    "pages/GestureCase/gesturePage",
+    "pages/fileAndHybrid/fileage",
+    "pages/fileAndHybrid/LinkWebPage"
   ],
   "window": {
     "designWidth": 720

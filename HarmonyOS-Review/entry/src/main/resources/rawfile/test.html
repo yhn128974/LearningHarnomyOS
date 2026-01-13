@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <h1> I am a h5 page</h1>
+    <p> hybrid Case</p>
+    <img src="https://foruda.gitee.com/avatar/1705232317138324256/1759638_itcast_panpu_1705232317.png" width="200">
+    <button onclick="changeText()">更换标题</button>
+    <button onclick="selfOpenAlum()">打开相册</button>
+
+</div>
+</body>
+<script>
+    function changeText (message="default"){
+        document.querySelector('p').innerHTML=message
+    }
+
+    function selfOpenAlum(){
+        harmoneyOSObj.openAlum(9)
+    }
+
+</script>
+</html>
