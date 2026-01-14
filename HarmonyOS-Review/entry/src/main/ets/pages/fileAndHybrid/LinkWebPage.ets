@@ -19,6 +19,7 @@ struct LinkWebPage {
 
   build() {
     Column() {
+
       Button(' change web information').onClick(() => {
         //想要操纵网页需要WebviewController.runJavaScript
         this.currentWebController.runJavaScript(`changeText('from app')`)

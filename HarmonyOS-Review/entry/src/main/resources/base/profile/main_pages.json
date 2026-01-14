@@ -44,7 +44,10 @@
     "pages/ animation/animationPage3",
     "pages/GestureCase/gesturePage",
     "pages/fileAndHybrid/fileage",
-    "pages/fileAndHybrid/LinkWebPage"
+    "pages/fileAndHybrid/LinkWebPage",
+    "pages/videoAndRedio/videoPage",
+    "pages/videoAndRedio/douYingCasePage",
+    "pages/threadsaAndProcesses/taskpoolPage"
   ],
   "window": {
     "designWidth": 720
