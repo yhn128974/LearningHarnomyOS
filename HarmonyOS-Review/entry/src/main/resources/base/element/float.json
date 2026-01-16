@@ -7,6 +7,10 @@
     {
       "name": "text_font_size",
       "value": "40fp"
+    },
+    {
+      "name": "font_size",
+      "value": "14fp"
     }
   ]
 }

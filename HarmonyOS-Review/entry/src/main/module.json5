@@ -43,7 +43,6 @@
         "label": "$string:FoodAbility_label",
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
-
       }
     ],
     //与abilities不在一个进程内
@@ -59,6 +58,19 @@
             "resource": "$profile:backup_config"
           }
         ]
+      },
+      {
+        "name": "EntryFormAbility",
+        "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
+        "label": "$string:EntryFormAbility_label",
+        "description": "$string:EntryFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
       }
     ],
     "requestPermissions": [
@@ -70,10 +82,12 @@
         "name": "ohos.permission.APPROXIMATELY_LOCATION",
         "reason": "$string:permission_location",
         "usedScene": {
-          "abilities": ["EntryAbility","FoodAbility"],
+          "abilities": [
+            "EntryAbility",
+            "FoodAbility"
+          ],
           "when": "always"
         }
-
       }
     ],
     "routerMap": "$profile:routerMap"

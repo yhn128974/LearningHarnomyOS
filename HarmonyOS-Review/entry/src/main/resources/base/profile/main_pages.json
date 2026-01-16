@@ -47,7 +47,9 @@
     "pages/fileAndHybrid/LinkWebPage",
     "pages/videoAndRedio/videoPage",
     "pages/videoAndRedio/douYingCasePage",
-    "pages/threadsaAndProcesses/taskpoolPage"
+    "pages/threadsaAndProcesses/taskpoolPage",
+    "pages/threadsaAndProcesses/workerPage",
+    "pages/threadsaAndProcesses/widgetProcessPage"
   ],
   "window": {
     "designWidth": 720
