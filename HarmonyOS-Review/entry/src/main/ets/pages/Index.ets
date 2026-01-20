@@ -1,3 +1,5 @@
+import hilog from '@ohos.hilog';
+
 @Entry
 @Component
 struct Index {
@@ -15,7 +17,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          this.message = 'Welcome';
+
         })
     }
     .height('100%')
