@@ -10,39 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
-    },
-    {
-      "name": "title",
-      "value": "新三国无双"
-    },
-    {
-      "name": "FoodAbility_desc",
-      "value": "description"
-    },
-    {
-      "name": "FoodAbility_label",
-      "value": "label"
-    },
-    {
-      "name": "permission_location",
-      "value": "申请位置权限"
-    },
-    {
-      "name": "EntryFormAbility_desc",
-      "value": "form_description"
-    },
-    {
-      "name": "EntryFormAbility_label",
-      "value": "form_label"
-    },
-    {
-      "name": "widget_desc",
-      "value": "This is a service widget."
-    },
-    {
-      "name": "widget_display_name",
-      "value": "test widget"
+      "value": "Interview Pass"
     }
   ]
 }

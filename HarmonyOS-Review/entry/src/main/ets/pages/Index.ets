@@ -1,43 +1,24 @@
-import { promptAction, PromptAction } from '@kit.ArkUI'
-import { common, Want } from '@kit.AbilityKit'
-import { UIAbility } from '@kit.AbilityKit';
-
-
-@Entry()
-@ComponentV2
+@Entry
+@Component
 struct Index {
-  //获取上下文对象（方便跳转使用）,不要在使用getcontext()
-  abilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext
-
-  // self是要共享的
-
+  @State message: string = 'Hello World';
 
   build() {
-    Column() {
-      Text("hello harmony")
-        .fontSize(50)
-        .fontColor(Color.Red)
-        .backgroundColor(Color.Gray)
-        .width("100%")
-        .height(100)
-
-      Button('go to foodAbility').onClick(() => {
-        let wantInfo: Want = {
-          deviceId: '',
-          bundleName: 'com.example.myapplication',
-          moduleName: "entry",
-          abilityName: "FoodAbility",
-          parameters: {
-            info: "the information come from entry ability"
-          }
-        }
-        //通过获取uiContext的上下文来获取Ability的上下文
-        this.abilityContext.startAbility(wantInfo)
-
-      })
+    RelativeContainer() {
+      Text(this.message)
+        .fontColor($r('app.color.common_main_color'))
+        .id('HelloWorld')
+        .fontSize($r('app.float.page_text_font_size'))
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          this.message = 'Welcome';
+        })
     }
-    .width('100%')
     .height('100%')
-
+    .width('100%')
   }
 }

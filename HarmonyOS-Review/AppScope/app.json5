@@ -4,7 +4,9 @@
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
-    "icon": "$media:layered_image",
+
+    //统一标签与图标
+    "icon": "$media:startIcon",
     "label": "$string:app_name"
   }
 }

@@ -27,8 +27,8 @@
   },
   "modules": [
     {
-      "name": "entry",
-      "srcPath": "./entry",
+      "name": "reviewEntry",
+      "srcPath": "./reviewEntry",
       "targets": [
         {
           "name": "default",
@@ -41,6 +41,18 @@
     {
       "name": "library",
       "srcPath": "./library",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "entry",
+      "srcPath": "./entry",
       "targets": [
         {
           "name": "default",

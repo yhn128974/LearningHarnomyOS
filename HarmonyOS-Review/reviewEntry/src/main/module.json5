@@ -1,0 +1,95 @@
+{
+  "module": {
+    "name": "reviewEntry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    //配入口ability名
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    //所有的ability都是在一个进程的多个线程
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        //配置 exported:true 是否可以被其他应用调起
+        "exported": true,
+        //，skills作为入口ABILIY
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "ohos.want.action.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FoodAbility",
+        "srcEntry": "./ets/foodability/FoodAbility.ets",
+        "description": "$string:FoodAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:FoodAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+      }
+    ],
+    //与abilities不在一个进程内
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      },
+      {
+        "name": "EntryFormAbility",
+        "srcEntry": "./ets/entryformability/EntryFormAbility.ets",
+        "label": "$string:EntryFormAbility_label",
+        "description": "$string:EntryFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        //配置网络权限
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:permission_location",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility",
+            "FoodAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ],
+    "routerMap": "$profile:routerMap"
+  }
+}
