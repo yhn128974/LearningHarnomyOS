@@ -3,22 +3,20 @@ import { AreaHeight } from '../../models/AreaHeight'
 import { currentUIAbilityContext } from '../../models/contexts'
 
 class FullScreen {
-  //获取顶层的window对象
-  currentUIAbilityContext = AppStorageV2.connect(currentUIAbilityContext)!
-
   //可以将context对象,存到AppStorage中，便于使用
   async enable() {
+    let UIAbilityContext = AppStorageV2.connect(currentUIAbilityContext)!
 
-    if (this.currentUIAbilityContext?.context) {
+    if (UIAbilityContext?.context) {
       //设置沉浸式布局
-      await window.getLastWindow(this.currentUIAbilityContext?.context).then((win) => {
+      await window.getLastWindow(UIAbilityContext?.context).then((win) => {
         //
         win.setWindowLayoutFullScreen(true)
         //取值
         let topArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_SYSTEM)
         let bottomArea = win.getWindowAvoidArea(window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR)
         let topHeight = topArea.topRect.height
-        let bottomHeight = bottomArea.topRect.height
+        let bottomHeight = bottomArea.bottomRect.height
 
         //设置内存存储
         let currentAreaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => {
@@ -35,10 +33,11 @@ class FullScreen {
   }
 
   async disable() {
-
-    if (this.currentUIAbilityContext?.context) {
+    //获取顶层的window对象
+    let UIAbilityContext = AppStorageV2.connect(currentUIAbilityContext)
+    if (UIAbilityContext?.context) {
       //设置沉浸式布局
-      await window.getLastWindow(this.currentUIAbilityContext?.context).then((win) => {
+      await window.getLastWindow(UIAbilityContext?.context).then((win) => {
         win.setWindowLayoutFullScreen(false)
 
 

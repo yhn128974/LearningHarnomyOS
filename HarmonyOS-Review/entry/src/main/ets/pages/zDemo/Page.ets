@@ -1,7 +1,8 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fullScreenController, logger } from '../../commons/utils';
-import { AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2, window } from '@kit.ArkUI';
 import { AreaHeight } from '../../models/AreaHeight';
+import { statusBar } from '../../commons/utils/StatusBar';
 
 
 @Entry
@@ -51,19 +52,23 @@ struct Page {
 
       Button('开启沉浸式').onClick(async () => {
 
-        // await window.getLastWindow(this.getUIContext().getHostContext()).then((window) => {
-        //   window.setWindowLayoutFullScreen(true)
-        // })
+        statusBar.setLightBar()
 
         fullScreenController.enable()
+
       })
       Button('关闭沉浸式').onClick(async () => {
-        // await window.getLastWindow(this.getUIContext().getHostContext()).then((window) => {
-        //   window.setWindowLayoutFullScreen(false)
-        // })
+        statusBar.setDarkBar()
 
         fullScreenController.disable()
+
       })
+      Button('改变状态栏字体颜色').onClick(async () => {
+        statusBar.setStatusBar({
+          statusBarContentColor: "#ffff00"
+        })
+      })
+
     }
     .height('100%')
     .width('100%')
