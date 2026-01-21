@@ -1,7 +1,6 @@
 import { HcClockIn } from "../../commons/components/HcClockIn"
 import { HcSearchBox } from "../../commons/components/HcSearchBox"
 import { HomeCategory } from "./comps/HomeCategory"
-import { mockQuestionTypeList, QuestionType } from "./models/QuestionType"
 
 
 @ComponentV2

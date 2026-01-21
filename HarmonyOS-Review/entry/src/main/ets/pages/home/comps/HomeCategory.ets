@@ -1,9 +1,10 @@
-import { mockQuestionTypeList, QuestionType, Tag } from "../models/QuestionType"
+import { QuestionItemComp, QuestionList } from "../../../commons/components"
+import { mockData, QuestionType } from "../models/QuestionType"
 
 @ComponentV2
 export struct HomeCategory {
   @Local currentIndex: number = 0
-  @Local currentMockQuestionTypeList: QuestionType[] = mockQuestionTypeList
+  @Local currentMockQuestionTypeList: QuestionType[] = mockData
 
   @Builder
   CategoryBar(Question: QuestionType, index: number) {
@@ -36,23 +37,14 @@ export struct HomeCategory {
 
   }
 
-  @Builder
-  ItemList(item: Tag) {
-    Text(item.tagName)
-
-  }
-
   build() {
     Tabs() {
       ForEach(this.currentMockQuestionTypeList, (Question: QuestionType, index) => {
         TabContent() {
-          //
-          List() {
-            ForEach(Question.tags, (item: Tag) => {
-              this.ItemList(item)
-            })
-          }
-        }.tabBar(this.CategoryBar(Question, index))
+          QuestionList()
+        }
+        .tabBar(this.CategoryBar(Question, index))
+        .align(Alignment.TopStart)
 
       })
     }.barMode(BarMode.Scrollable).barHeight(44).divider({
