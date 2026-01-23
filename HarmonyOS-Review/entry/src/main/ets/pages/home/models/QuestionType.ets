@@ -1,10 +1,12 @@
-
-
-
 export interface QuestionType {
   id: number
   name: string
   displayNewestFlag: 0 | 1
+}
+export  interface AxiosRes {
+  message: string
+  code: number
+  data: QuestionType[]
 }
 
 export const mockData: QuestionType[] = [
@@ -17,3 +19,4 @@ export const mockData: QuestionType[] = [
   { id: 7, name: 'Stage', displayNewestFlag: 0 },
   { id: 8, name: 'Kit', displayNewestFlag: 0 }
 ]
+
