@@ -1,15 +1,20 @@
-import axios, { Axios, AxiosResponse } from "@ohos/axios"
 import { QuestionList } from "../../../commons/components"
-import { baseURL, httpClient } from "../../../commons/utils/http/httpClient"
-import { AxiosRes, mockData, QuestionType } from "../models/QuestionType"
-import { JSON } from "@kit.ArkTS"
-import { FilterButton } from "./FilterButton"
+import { httpClient } from "../../../commons/utils/http/httpClient"
+import { mockData, QuestionType } from "../models/QuestionType"
+
+import { FilterButton, filterButtonList, FilterButtonModel } from "./FilterButton"
+import { SortType } from '../../../models'
 
 @ComponentV2
 export struct HomeCategory {
-  @Local currentIndex: number = 0
   @Local currentMockQuestionTypeList: QuestionType[] = mockData
   @Local isShowBindSheet: boolean = false
+  //当初状态
+  @Local currentIndex: number = 0
+  @Local sort: SortType = SortType.Default
+  //保存用于选择的一个临时状态
+  @Local tempSelectIndex: number = this.currentIndex
+  @Local tempSelectSortType: SortType = this.sort
 
   @Builder
   FilterSheetBuilder() {
@@ -19,6 +24,10 @@ export struct HomeCategory {
           .fontSize(16)
           .fontWeight(500)
           .fontColor($r('app.color.common_gray_03'))
+          .onClick(() => {
+            this.tempSelectIndex = 0
+            this.tempSelectSortType = SortType.Default
+          })
         Text('筛选题目')
           .layoutWeight(1)
           .fontSize(18)
@@ -30,6 +39,8 @@ export struct HomeCategory {
           .fontSize(16)
           .fontColor($r('app.color.common_main_color'))
           .onClick(() => {
+            this.sort = this.tempSelectSortType
+            this.currentIndex = this.tempSelectIndex
             this.isShowBindSheet = false
           })
       }
@@ -38,26 +49,30 @@ export struct HomeCategory {
       Text('题目排序')
         .textTitle()
       // TODO 筛选按钮
-
-
       Flex({
         wrap: FlexWrap.Wrap
       }) {
-        FilterButton({ text: '默认' })
-        FilterButton({ text: '浏览量', isSort: true })
-        FilterButton({ text: '难度', isSort: true })
-        FilterButton({ text: '推荐' })
+        ForEach(filterButtonList, (item: FilterButtonModel) => {
+          FilterButton({ text: item.text, isSort: item.isSort, selected: this.tempSelectSortType === item.sortType })
+            .onClick(() => {
+              this.tempSelectSortType = item.sortType
+            })
+        })
       }
 
       Text('选择分类')
         .textTitle()
       // TODO 筛选按钮
       Flex({ wrap: FlexWrap.Wrap }) {
-        ForEach(this.currentMockQuestionTypeList, (item: QuestionType) => {
+        ForEach(this.currentMockQuestionTypeList, (item: QuestionType, index: number) => {
           FilterButton({
             text: item.name,
-            isNew: item.displayNewestFlag === 1
+            isNew: item.displayNewestFlag === 1,
+            selected: this.tempSelectIndex === index
+          }).onClick(() => {
+            this.tempSelectIndex = index
           })
+
         })
       }
     }
@@ -112,11 +127,16 @@ export struct HomeCategory {
     Stack({
       alignContent: Alignment.TopEnd
     }) {
-      Tabs() {
+      Tabs({
+        index: this.currentIndex
+      }) {
         ForEach(this.currentMockQuestionTypeList, (Question: QuestionType, index) => {
           TabContent() {
             QuestionList({
-              typeId: Question.id
+              typeId: Question.id,
+              sort: this.sort,
+              index: index,
+              currentIndexId: this.currentIndex
             })
           }
           .tabBar(this.CategoryBar(Question, index))
@@ -124,13 +144,21 @@ export struct HomeCategory {
 
         })
       }
+
       .barMode(BarMode.Scrollable)
       .barHeight(44)
       .divider({
         strokeWidth: 0.5,
         color: $r('app.color.common_gray_border')
-      }).onChange((value) => {
-        this.currentIndex = value
+      })
+      // .onChange((value) => {
+      //   this.currentIndex = value
+      // }) //太慢了
+      // .animationDuration(0) //关闭动画可以解决tabContent切换时中间内容被激活的问题
+      //效果点击谁就直接切换到谁不会有中间的加载过程
+      .onTabBarClick((index) => {
+        this.currentIndex = index
+        this.tempSelectIndex = this.currentIndex
       })
 
       Row() {

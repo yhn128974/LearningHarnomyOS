@@ -5,6 +5,10 @@ import { promptAction } from "@kit.ArkUI";
 
 @ComponentV2
 export struct QuestionList {
+  //
+  @Param index: number = 0
+  @Param currentIndexId: number = 0
+  //
   @Param typeId: number = 0;
   @Local page: number = 1
   @Param sort: SortType = SortType.Default
@@ -14,6 +18,13 @@ export struct QuestionList {
   @Local isFinish: boolean = false
   @Local isLoading: boolean = false
   @Local list: QuestionItem[] = []
+
+  @Monitor('sort', 'currentIndexId')
+  sortTypeChange() {
+    if (this.index == this.currentIndexId) {
+      this.isRefreshing = true
+    }
+  }
 
   @Builder
   loadMoreBuilder() {
@@ -35,21 +46,9 @@ export struct QuestionList {
   }
 
   async onload() {
-
-    // setTimeout(() => {
-    //   let newList: number[] = new Array(10).fill(0)
-    //   this.list.push(...newList)
-    //   this.isLoading = false
-    //   if (this.list.length >= 40) {
-    //     this.isFinish = true
-    //   }
-    // }, 1000)
-
     const res = await getQuestList(this.typeId, this.page, this.sort)
     this.list.push(...res.rows)
     this.isLoading = false
-
-
     if (this.list.length >= res.total) {
       this.isFinish = true
     } else {
@@ -57,7 +56,6 @@ export struct QuestionList {
     }
   }
 
-  //
   async onRefresh() {
     this.page = 1
     const res = await getQuestList(this.typeId, this.page, this.sort)
@@ -81,7 +79,6 @@ export struct QuestionList {
         refreshing: this.isRefreshing!!
       }) {
         List() {
-
           ForEach(this.list, (item: QuestionItem) => {
             ListItem() {
               QuestionItemComp({
@@ -89,16 +86,13 @@ export struct QuestionList {
               })
             }
           })
-
           ListItem() {
             this.loadMoreBuilder()
           }
-
         }
         .width('100%')
         .height('100%')
         .onReachEnd(() => {
-
           if (this.isLoading || this.isFinish) {
             return
           } else {
@@ -110,14 +104,10 @@ export struct QuestionList {
         .edgeEffect(EdgeEffect.None)
         .scrollBar(BarState.Off)
       }.onRefreshing(() => {
-
         this.onRefresh()
-
         // setTimeout(() => {
         //   this.isRefreshing = false
         // }, 1000)
-
-
       })
     }
   }
