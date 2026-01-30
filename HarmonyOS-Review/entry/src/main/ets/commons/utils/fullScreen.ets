@@ -6,7 +6,6 @@ class FullScreen {
   //可以将context对象,存到AppStorage中，便于使用
   async enable() {
     let UIAbilityContext = AppStorageV2.connect(currentUIAbilityContext)!
-
     if (UIAbilityContext?.context) {
       //设置沉浸式布局
       await window.getLastWindow(UIAbilityContext?.context).then((win) => {
@@ -26,10 +25,7 @@ class FullScreen {
         currentAreaHeight.voidAreaTopHeight = px2vp(topHeight)
         currentAreaHeight.voidAreaBottomHeight = px2vp(bottomHeight)
       })
-
     }
-
-
   }
 
   async disable() {
@@ -39,18 +35,13 @@ class FullScreen {
       //设置沉浸式布局
       await window.getLastWindow(UIAbilityContext?.context).then((win) => {
         win.setWindowLayoutFullScreen(false)
-
-
         //设置内存存储
         let currentAreaHeight: AreaHeight = AppStorageV2.connect(AreaHeight)!
         //赋值
         currentAreaHeight.voidAreaTopHeight = 0
         currentAreaHeight.voidAreaBottomHeight = 0
       })
-
-
     }
-
   }
 }
 

@@ -5,3 +5,5 @@ export * from './TabBarItem'
 export * from './contexts'
 
 export * from './QuestionListModel'
+
+export * from './User'

@@ -1,0 +1,9 @@
+{
+  "routerMap": [
+    {
+      "name": "LoginPage",
+      "pageSourceFile": "src/main/ets/pages/login/index.ets",
+      "buildFunction": "LoginBuilder"
+    }
+  ]
+}

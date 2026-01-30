@@ -15,9 +15,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
   }
   //如果状态码不对不走成功的逻辑,抛出一个错误的Promise,将整个后台的响应都传递
   return Promise.reject(res.data)
-
 }, (err: AxiosError) => {
-
   return Promise.reject(err)
 })
 

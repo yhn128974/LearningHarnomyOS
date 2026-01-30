@@ -7,6 +7,7 @@ import { HomeCategory } from "./comps/HomeCategory"
 export struct HomePage {
   // @StorageProp('topHeight') topHeight: number = 0
 
+  //
 
   @Local swiperList: ResourceStr[] = [
     $r('app.media.banner_ai'),
@@ -58,7 +59,6 @@ export struct HomePage {
       .backgroundColor($r('app.color.white'))
 
     }
-
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.common_gray_bg'))

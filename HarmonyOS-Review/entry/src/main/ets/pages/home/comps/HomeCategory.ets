@@ -4,17 +4,20 @@ import { mockData, QuestionType } from "../models/QuestionType"
 
 import { FilterButton, filterButtonList, FilterButtonModel } from "./FilterButton"
 import { SortType } from '../../../models'
+import { HcSkeletonItem } from "../../../commons/components/HcSkeletonItem"
+import { HcSkeleton } from "../../../commons/components/HcSkeleton"
 
 @ComponentV2
 export struct HomeCategory {
-  @Local currentMockQuestionTypeList: QuestionType[] = mockData
+  @Local currentMockQuestionTypeList: QuestionType[] = []
   @Local isShowBindSheet: boolean = false
   //当初状态
   @Local currentIndex: number = 0
-  @Local sort: SortType = SortType.Default
   //保存用于选择的一个临时状态
   @Local tempSelectIndex: number = this.currentIndex
+  @Local sort: SortType = SortType.Default
   @Local tempSelectSortType: SortType = this.sort
+  @Local isLoading: boolean = true
 
   @Builder
   FilterSheetBuilder() {
@@ -115,71 +118,106 @@ export struct HomeCategory {
     this.getQuestList()
   }
 
+  @Builder
+  SkeletonBuilder() {
+    HcSkeleton() {
+      Column() {
+        Row({ space: 16 }) {
+          HcSkeletonItem({ widthValue: 60 })
+          HcSkeletonItem({ widthValue: 100 })
+          HcSkeletonItem({ widthValue: 80 })
+          HcSkeletonItem({ widthValue: 40 })
+        }
+        .height(44)
+        .width('100%')
+
+        ForEach([1, 2, 3, 4, 5, 6], () => {
+          Column({ space: 10 }) {
+            HcSkeletonItem({ widthValue: '90%' })
+            HcSkeletonItem({ widthValue: '45%' })
+          }
+          .height(80)
+          .width('100%')
+          .alignItems(HorizontalAlign.Start)
+          .justifyContent(FlexAlign.Center)
+        })
+      }
+      .padding({ left: 16, right: 16 })
+    }
+  }
+
   async getQuestList() {
     const res = await httpClient.request<QuestionType[]>({
       url: '/question/type',
       method: 'get',
     })
     this.currentMockQuestionTypeList = res
+    this.isLoading = false
   }
 
   build() {
-    Stack({
-      alignContent: Alignment.TopEnd
-    }) {
-      Tabs({
-        index: this.currentIndex
-      }) {
-        ForEach(this.currentMockQuestionTypeList, (Question: QuestionType, index) => {
-          TabContent() {
-            QuestionList({
-              typeId: Question.id,
-              sort: this.sort,
-              index: index,
-              currentIndexId: this.currentIndex
-            })
-          }
-          .tabBar(this.CategoryBar(Question, index))
-          .align(Alignment.TopStart)
 
+    if (this.isLoading) {
+      this.SkeletonBuilder()
+    } else {
+      Stack({
+        alignContent: Alignment.TopEnd
+      }) {
+        Tabs({
+          index: this.currentIndex
+        }) {
+          ForEach(this.currentMockQuestionTypeList, (Question: QuestionType, index) => {
+            TabContent() {
+              QuestionList({
+                typeId: Question.id,
+                sort: this.sort,
+                index: index,
+                currentIndexId: this.currentIndex
+              })
+            }
+            .tabBar(this.CategoryBar(Question, index))
+            .align(Alignment.TopStart)
+
+          })
+        }
+
+        .barMode(BarMode.Scrollable)
+        .barHeight(44)
+        .divider({
+          strokeWidth: 0.5,
+          color: $r('app.color.common_gray_border')
+        })
+        // .onChange((value) => {
+        //   this.currentIndex = value
+        // }) //太慢了
+        // .animationDuration(0) //关闭动画可以解决tabContent切换时中间内容被激活的问题
+        //效果点击谁就直接切换到谁不会有中间的加载过程
+        .onTabBarClick((index) => {
+          this.currentIndex = index
+          this.tempSelectIndex = this.currentIndex
+        })
+
+        Row() {
+          Image($r('app.media.ic_home_filter')).width(24).aspectRatio(1)
+        }
+        .width(56)
+        .height(44)
+        .justifyContent(FlexAlign.Center)
+        //线性渐变
+        .linearGradient({
+          angle: 90,
+          colors: [['#00ffffff', 0], [Color.White, 0.3]]
+        })
+        .bindSheet(this.isShowBindSheet!!, this.FilterSheetBuilder, {
+          showClose: false,
+          height: 400,
+        })
+        .onClick(() => {
+          this.isShowBindSheet = true
         })
       }
-
-      .barMode(BarMode.Scrollable)
-      .barHeight(44)
-      .divider({
-        strokeWidth: 0.5,
-        color: $r('app.color.common_gray_border')
-      })
-      // .onChange((value) => {
-      //   this.currentIndex = value
-      // }) //太慢了
-      // .animationDuration(0) //关闭动画可以解决tabContent切换时中间内容被激活的问题
-      //效果点击谁就直接切换到谁不会有中间的加载过程
-      .onTabBarClick((index) => {
-        this.currentIndex = index
-        this.tempSelectIndex = this.currentIndex
-      })
-
-      Row() {
-        Image($r('app.media.ic_home_filter')).width(24).aspectRatio(1)
-      }
-      .width(56)
-      .height(44)
-      .justifyContent(FlexAlign.Center)
-      //线性渐变
-      .linearGradient({
-        angle: 90,
-        colors: [['#00ffffff', 0], [Color.White, 0.3]]
-      })
-      .bindSheet(this.isShowBindSheet!!, this.FilterSheetBuilder, {
-        showClose: false,
-        height: 400,
-      })
-      .onClick(() => {
-        this.isShowBindSheet = true
-      })
     }
+
 
   }
 }

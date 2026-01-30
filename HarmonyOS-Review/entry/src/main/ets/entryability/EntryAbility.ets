@@ -16,7 +16,7 @@ export default class EntryAbility extends UIAbility {
       return new currentUIAbilityContext(this.context)
     })
 
-
+    fullScreenController.enable()
   }
 
   onDestroy(): void {
@@ -36,7 +36,7 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
       //
-      fullScreenController.enable()
+
 
     });
   }
