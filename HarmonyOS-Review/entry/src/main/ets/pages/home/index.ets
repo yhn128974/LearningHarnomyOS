@@ -1,6 +1,8 @@
 import { HcClockIn } from "../../commons/components/HcClockIn"
 import { HcSearchBox } from "../../commons/components/HcSearchBox"
+import { Auth, author } from "../../commons/utils/Author"
 import { HomeCategory } from "./comps/HomeCategory"
+import { promptAction, PromptAction } from "@kit.ArkUI"
 
 
 @ComponentV2
@@ -28,6 +30,14 @@ export struct HomePage {
         Image($r('app.media.ic_home_scan'))
           .width(24)
           .aspectRatio(1)
+          .onClick(() => {
+            author.checkAuth(() => {
+              //打开相机
+              promptAction.openToast({
+                message: "scan is opening"
+              })
+            })
+          })
         Blank()
         // TODO 搜索组件
         HcSearchBox({

@@ -1,7 +1,11 @@
 import { HcNavBar } from "../../commons/components/HcNavBar"
-import { promptAction } from "@kit.ArkUI"
+import { PersistenceV2, promptAction } from "@kit.ArkUI"
 import { httpClient } from "../../commons/utils/http/httpClient"
-import { LoginParams, User } from "../../models"
+import { AppUser, LoginParams, User, UserModel } from "../../models"
+import { author } from "../../commons/utils/Author"
+import { navPathStack } from "../../commons/utils"
+import { emitter } from "@kit.BasicServicesKit"
+import { LOGIN_EVENT } from "../../commons/constants"
 
 @ComponentV2
 struct LoginPage {
@@ -12,6 +16,7 @@ struct LoginPage {
 
   async login() {
     if (this.loading) {
+
       return
     }
     if (!this.mobile) {
@@ -26,7 +31,7 @@ struct LoginPage {
 
     try {
       this.loading = true
-      const user = await httpClient.request<User, LoginParams>({
+      const user = await httpClient.request<UserModel, LoginParams>({
         method: 'post',
         url: 'login',
         data: {
@@ -34,10 +39,15 @@ struct LoginPage {
           password: this.code
         }
       })
+      //
+      author.setUserInfo(user)
+      //
       this.loading = false
       console.log(JSON.stringify(user))
-      //存储token到本地
-
+      //
+      navPathStack.pop() //返回上一页
+      //通知登录
+      emitter.emit(LOGIN_EVENT)
     } catch (e) {
       this.loading = false
       promptAction.showToast({ message: e.message })

@@ -1,8 +1,9 @@
 import { HcClockIn } from '../../commons/components'
 import { AppStorageV2, router } from '@kit.ArkUI'
-import { AreaHeight } from '../../models'
+import { AreaHeight, UserModel } from '../../models'
 import { statusBar } from '../../commons/utils/StatusBar'
-import { fullScreenController, navPathStack } from '../../commons/utils'
+import { formatTime, fullScreenController, navPathStack } from '../../commons/utils'
+import { author } from '../../commons/utils/Author'
 
 interface Nav {
   icon: ResourceStr
@@ -20,9 +21,12 @@ interface Tool {
 
 @ComponentV2
 export struct MinePage {
+  //
   areaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => {
     return new AreaHeight(0, 0)
   })!
+  //
+  currentUser: UserModel = author.getUserInfo()
 
   @Builder
   navBuilder(nav: Nav) {
@@ -86,15 +90,15 @@ export struct MinePage {
     Column({ space: 16 }) {
       //
       Row({ space: 12 }) {
-        Image($r('app.media.ic_mine_avatar'))
+        Image(this.currentUser.avatar ?? $r('app.media.ic_mine_avatar'))
           .alt($r('app.media.ic_mine_avatar'))
           .width(55)
           .aspectRatio(1)
           .borderRadius(55)
         // 是否登录
-        if (false) {
+        if (this.currentUser.token) {
           Column({ space: 4 }) {
-            Text('用户名')
+            Text(this.currentUser.nickName || this.currentUser.username)
               .fontSize(18)
               .fontWeight(500)
               .maxLines(1)
@@ -125,8 +129,7 @@ export struct MinePage {
               })
             })
         }
-
-        HcClockIn({ clockInCount: 10 })
+        HcClockIn({ clockInCount: this.currentUser.clockinNumbers })
       }
       .width('100%')
       .height(100)
@@ -152,7 +155,7 @@ export struct MinePage {
         this.navBuilder({
           icon: $r('app.media.ic_mine_study'),
           name: '累计学时',
-          other: '10小时',
+          other: formatTime(this.currentUser.totalTime),
           onClick: () => {
             // TODO
           }
@@ -182,6 +185,16 @@ export struct MinePage {
       .backgroundColor($r('app.color.white'))
       .borderRadius(8)
 
+      Button('退出登录').onClick(() => {
+        author.setUserInfo({} as UserModel)
+        navPathStack.pushPath({
+          name: "LoginPage"
+        })
+      }).width('90%').height(40)
+
+      Button('修改token').onClick(() => {
+        author.getUserInfo().token = 'xxxxxxx'
+      }).width('90%').height(40)
     }
     .padding(16)
     .backgroundColor($r('app.color.common_gray_bg'))

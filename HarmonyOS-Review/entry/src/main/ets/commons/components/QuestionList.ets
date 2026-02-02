@@ -2,6 +2,8 @@ import { QuestionItemComp } from "."
 import { getQuestList, QuestionItem, SortType } from "../../models";
 import { JSON } from "@kit.ArkTS";
 import { promptAction } from "@kit.ArkUI";
+import { emitter } from "@kit.BasicServicesKit";
+import { LOGIN_EVENT } from "../constants";
 
 @ComponentV2
 export struct QuestionList {
@@ -43,34 +45,45 @@ export struct QuestionList {
 
   aboutToAppear(): void {
     this.onload()
+
   }
 
   async onload() {
-    const res = await getQuestList(this.typeId, this.page, this.sort)
-    this.list.push(...res.rows)
-    this.isLoading = false
-    if (this.list.length >= res.total) {
-      this.isFinish = true
-    } else {
-      this.page++
+    try {
+      const res = await getQuestList(this.typeId, this.page, this.sort)
+      this.list.push(...res.rows)
+      this.isLoading = false
+      if (this.list.length >= res.total) {
+        this.isFinish = true
+      } else {
+        this.page++
+      }
+    } catch (e) {
+      this.isLoading = false
     }
+
   }
 
   async onRefresh() {
-    this.page = 1
-    const res = await getQuestList(this.typeId, this.page, this.sort)
-    this.list = res.rows
-    this.isRefreshing = false
+    try {
+      this.page = 1
+      const res = await getQuestList(this.typeId, this.page, this.sort)
+      this.list = res.rows
+      this.isRefreshing = false
 
-    if (this.page >= res.pageTotal) {
-      this.isFinish = true
-    } else {
-      this.isFinish = false
-      // this.page++
+      if (this.page >= res.pageTotal) {
+        this.isFinish = true
+      } else {
+        this.isFinish = false
+        // this.page++
+      }
+      promptAction.openToast({
+        message: "update success"
+      })
+    } catch (e) {
+      this.isRefreshing = false
     }
-    promptAction.openToast({
-      message: "update success"
-    })
+
   }
 
   build() {

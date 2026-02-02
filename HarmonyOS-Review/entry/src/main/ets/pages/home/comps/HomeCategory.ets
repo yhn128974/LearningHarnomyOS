@@ -6,6 +6,8 @@ import { FilterButton, filterButtonList, FilterButtonModel } from "./FilterButto
 import { SortType } from '../../../models'
 import { HcSkeletonItem } from "../../../commons/components/HcSkeletonItem"
 import { HcSkeleton } from "../../../commons/components/HcSkeleton"
+import { emitter } from "@kit.BasicServicesKit"
+import { LOGIN_EVENT } from "../../../commons/constants"
 
 @ComponentV2
 export struct HomeCategory {
@@ -17,7 +19,7 @@ export struct HomeCategory {
   @Local tempSelectIndex: number = this.currentIndex
   @Local sort: SortType = SortType.Default
   @Local tempSelectSortType: SortType = this.sort
-  @Local isLoading: boolean = true
+  @Local isLoading: boolean = false
 
   @Builder
   FilterSheetBuilder() {
@@ -116,6 +118,11 @@ export struct HomeCategory {
 
   aboutToAppear(): void {
     this.getQuestList()
+
+    //LOGIN_EVENT监听登录事件
+    emitter.on(LOGIN_EVENT, () => {
+      this.getQuestList()
+    })
   }
 
   @Builder
@@ -147,12 +154,18 @@ export struct HomeCategory {
   }
 
   async getQuestList() {
-    const res = await httpClient.request<QuestionType[]>({
-      url: '/question/type',
-      method: 'get',
-    })
-    this.currentMockQuestionTypeList = res
-    this.isLoading = false
+    this.isLoading = true
+    try {
+      const res = await httpClient.request<QuestionType[]>({
+        url: '/question/type',
+        method: 'get',
+      })
+      this.currentMockQuestionTypeList = res
+      this.isLoading = false
+    } catch (err) {
+      this.isLoading = false
+    }
+
   }
 
   build() {
