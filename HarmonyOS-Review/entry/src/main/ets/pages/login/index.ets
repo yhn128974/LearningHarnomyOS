@@ -1,11 +1,13 @@
 import { HcNavBar } from "../../commons/components/HcNavBar"
-import { PersistenceV2, promptAction } from "@kit.ArkUI"
+import { promptAction } from "@kit.ArkUI"
 import { httpClient } from "../../commons/utils/http/httpClient"
-import { AppUser, LoginParams, User, UserModel } from "../../models"
+import { LoginParams, User, UserModel } from "../../models"
 import { author } from "../../commons/utils/Author"
 import { navPathStack } from "../../commons/utils"
 import { emitter } from "@kit.BasicServicesKit"
 import { LOGIN_EVENT } from "../../commons/constants"
+import { WebPageParams } from "../web/WebPage"
+import { apiLogin } from "../../commons/utils/http/api"
 
 @ComponentV2
 struct LoginPage {
@@ -31,21 +33,22 @@ struct LoginPage {
 
     try {
       this.loading = true
-      const user = await httpClient.request<UserModel, LoginParams>({
-        method: 'post',
-        url: 'login',
-        data: {
-          username: this.mobile,
-          password: this.code
-        }
-      })
+
+      //获取登录
+      const user = await apiLogin(this.mobile, this.code)
+
       //
       author.setUserInfo(user)
       //
       this.loading = false
       console.log(JSON.stringify(user))
       //
-      navPathStack.pop() //返回上一页
+      const param = navPathStack.getParamByName('Loginpage').pop() as Record<string, string>
+      if (param?.return_name) {
+        navPathStack.replacePath({ name: param.return_name, param })
+      } else {
+        navPathStack.pop() //返回上一页
+      }
       //通知登录
       emitter.emit(LOGIN_EVENT)
     } catch (e) {
@@ -70,8 +73,7 @@ struct LoginPage {
           Text('搞定企业面试真题，就用面试通')
             .fontSize(14)
             .fontColor($r('app.color.common_gray_01'))
-        }
-        .padding(16)
+        }.padding(16)
 
         Column({ space: 15 }) {
           TextInput({ placeholder: '请输入用户名', text: $$this.mobile })
@@ -96,12 +98,25 @@ struct LoginPage {
             Text('用户协议')
               .fontSize(14)
               .padding({ right: 4 })
+              .onClick(() => {
+                navPathStack.pushPath({
+                  name: "WebPage",
+                  param: { title: '用户协议', src: 'http://110.41.143.89/user' } as WebPageParams
+                })
+              })
             Text('和')
               .fontSize(14)
               .fontColor($r('app.color.common_gray_01'))
               .padding({ right: 4 })
             Text('隐私政策')
               .fontSize(14)
+              .onClick(() => {
+                navPathStack.pushPath({
+                  name: 'WebPage',
+                  param: { title: '隐私政策', src: 'http://110.41.143.89/privacy' } as WebPageParams
+                })
+              })
+
           }
           .width('100%')
 
@@ -131,15 +146,13 @@ struct LoginPage {
             // TODO
             this.login()
           })
-        }
-        .padding({ left: 36, right: 36, top: 30 })
+        }.padding({ left: 36, right: 36, top: 30 })
 
         Column() {
           Text('其他登录方式')
             .fontSize(14)
             .fontColor($r('app.color.common_gray_01'))
-        }
-        .padding({ top: 70, bottom: 100 })
+        }.padding({ top: 70, bottom: 100 })
 
       }
       .width('100%')

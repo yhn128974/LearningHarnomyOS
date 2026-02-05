@@ -1,9 +1,8 @@
 import { QuestionItemComp } from "."
 import { getQuestList, QuestionItem, SortType } from "../../models";
-import { JSON } from "@kit.ArkTS";
 import { promptAction } from "@kit.ArkUI";
-import { emitter } from "@kit.BasicServicesKit";
-import { LOGIN_EVENT } from "../constants";
+import { navPathStack } from "../utils";
+import { QuestionPageParams } from "../../models/QuestionPageParams";
 
 @ComponentV2
 export struct QuestionList {
@@ -96,6 +95,19 @@ export struct QuestionList {
             ListItem() {
               QuestionItemComp({
                 item
+              }).onClick(() => {
+                //common router
+                navPathStack.pushPath({
+                  name: "QuestionPage",
+                  param: {
+                    item,
+                    list: this.list
+                  } as QuestionPageParams
+                })
+                //auth Router
+                // author.checkAuth({
+                //   name: 'QuestionPage'
+                // })
               })
             }
           })

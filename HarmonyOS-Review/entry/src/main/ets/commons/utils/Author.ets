@@ -26,18 +26,37 @@ export class Auth {
   //访问控制
   //1.对页面跳转进行拦截
   //2.对方法调用进行拦截
-  checkAuth(options: Function) {
+  checkAuth(options: Function | NavPathInfo) {
     const user = this.getUserInfo()
-    if (user.token) {
-      options()
-    } else {
-      navPathStack.pushPath({
-        name: "LoginPage"
-      }, {
-        launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON
-      })
+    if (typeof options == 'function') {
+      if (user.token) {
+        options()
+      } else {
+        navPathStack.pushPath({
+          name: "LoginPage"
+        }, {
+          launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON
+        })
 
+      }
+    } else {
+      //
+      if (user.token) {
+        navPathStack.pushPath(options)
+      } else {
+        //记录当前跳转的NAME,便于回调
+        const param = options.param as Record<string, string> || {}
+        //
+        param.return_name = options.name
+        navPathStack.pushPath({
+          name: "LoginPage",
+          param
+        }, {
+          launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON
+        })
+      }
     }
+
   }
 }
 

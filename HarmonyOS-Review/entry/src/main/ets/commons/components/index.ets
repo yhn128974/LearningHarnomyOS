@@ -9,3 +9,5 @@ export * from './QuestionItemComp'
 export * from './QuestionList'
 
 export * from './HcNavBar'
+
+export * from './CustomDialog/HcLoadingDialog'

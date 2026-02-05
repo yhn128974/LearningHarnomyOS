@@ -1,4 +1,5 @@
-import { httpClient } from "../commons/utils/http/httpClient";
+import { apiGetQuesList } from "../commons/utils/http/api";
+
 
 export interface QuestionItem {
   id: number;
@@ -46,18 +47,30 @@ export interface PageData<T> {
 
 export async function getQuestList(typeID: number, page: number,
   sort: SortType, keyword?: string,): Promise<PageData<QuestionItem>> {
-  let res = await httpClient.request<PageData<QuestionItem>, QuestionItemParams>({
-    url: 'question/list',
-    method: 'get',
-    params: {
-      keyword: keyword,
-      type: typeID,
-      questionBankType: 10,
-      sort: sort || SortType.ViewLow,
-      pageSize: 10,
-      page: page,
-    } as QuestionItemParams
-  })
+
+  let params: QuestionItemParams = {
+    keyword: keyword,
+    type: typeID,
+    questionBankType: 10,
+    sort: sort || SortType.ViewLow,
+    pageSize: 10,
+    page: page,
+  } as QuestionItemParams
+
+  let res = await apiGetQuesList(params)
+
+  // let res = await httpClient.request<PageData<QuestionItem>, QuestionItemParams>({
+  //   url: 'question/list',
+  //   method: 'get',
+  //   params: {
+  //     keyword: keyword,
+  //     type: typeID,
+  //     questionBankType: 10,
+  //     sort: sort || SortType.ViewLow,
+  //     pageSize: 10,
+  //     page: page,
+  //   } as QuestionItemParams
+  // })
 
   return res
 }
