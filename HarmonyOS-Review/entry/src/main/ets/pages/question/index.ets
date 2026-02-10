@@ -1,13 +1,16 @@
 import { HcLoadingDialog, HcNavBar, HcTag } from '../../commons/components'
 import { AreaHeight, QuestionItem } from '../../models'
-import { AppStorageV2, promptAction } from '@kit.ArkUI'
+import { AppStorageV2, componentSnapshot, promptAction } from '@kit.ArkUI'
 import { navPathStack } from '../../commons/utils/navPathStack'
 import { QuestionDetail } from '../../models/QuestionDetail'
 import { apiGetQuesListDetail, apiQuestionOpt, QuestionOptParams } from '../../commons/utils/http/api'
 import { JSON } from '@kit.ArkTS'
 import { webview } from '@kit.ArkWeb'
 import { QuestionPageParams } from '../../models/QuestionPageParams'
-import { QuestionShareDialog } from '../../commons/components/CustomDialog/QuestionShareDialog'
+import { QuestionShareDialog } from './components/QuestionShareDialog'
+import { image } from '@kit.ImageKit'
+import { fileIo, fileUri } from '@kit.CoreFileKit'
+import { photoAccessHelper } from '@kit.MediaLibraryKit'
 
 //
 class TestObj {
@@ -21,10 +24,13 @@ class TestObj {
 
 @ComponentV2
 export struct QuestionPage {
+
   @Local areaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => new AreaHeight(0, 0))!
   @Local initializeItem: QuestionItem = {} as QuestionItem
   @Local currentList: QuestionItem[] = []
   @Local currentQuestionDetail: QuestionDetail = {} as QuestionDetail
+  @Local currentQuestionDetailList: QuestionDetail[] = []
+  @Local currentIndex: number = 0
   // set CustomDialogController
   questionShareDialogController: CustomDialogController = new CustomDialogController({
     builder: QuestionShareDialog({
@@ -33,12 +39,6 @@ export struct QuestionPage {
     customStyle: true,
     alignment: DialogAlignment.Center
   })
-  @Local currentQuestionDetailList: QuestionDetail[] = []
-  @Local currentIndex: number = 0
-  //set WebviewController
-  controller: WebviewController = new webview.WebviewController()
-  //实例化js注入对象
-  obj = new TestObj()
   //注册自定义弹框
   dialog = new CustomDialogController({
     builder: HcLoadingDialog({
@@ -47,6 +47,10 @@ export struct QuestionPage {
     customStyle: true,
     alignment: DialogAlignment.Center
   })
+  //set WebviewController
+  controller: WebviewController = new webview.WebviewController()
+  //实例化js注入对象
+  obj = new TestObj()
 
   @Monitor('currentQuestionDetail')
   updateWeb() {
@@ -160,6 +164,8 @@ export struct QuestionPage {
     .width(108)
   }
 
+
+
   build() {
     //必须用NavDestination包裹
     NavDestination() {
@@ -225,7 +231,8 @@ export struct QuestionPage {
             Text(' 上一题')
               .fontColor(this.currentIndex > 0 ? $r('app.color.common_gray_03') : $r('app.color.common_gray_01'))
 
-          }.onClick(() => {
+          }
+          .onClick(() => {
             if (this.currentIndex > 0) {
               this.currentIndex--
               this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())
@@ -246,7 +253,8 @@ export struct QuestionPage {
               .width(20)
               .aspectRatio(1)
               .fillColor($r('app.color.common_gray_03'))
-          }.onClick(() => {
+          }
+          .onClick(() => {
             if (this.currentIndex < this.currentList.length - 1) {
               this.currentIndex++
               this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())

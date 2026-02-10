@@ -1,18 +1,59 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { fullScreenController, logger } from '../../commons/utils';
-import { AppStorageV2, window } from '@kit.ArkUI';
+import { AppStorageV2, componentSnapshot, promptAction, window } from '@kit.ArkUI';
 import { AreaHeight } from '../../models/AreaHeight';
 import { statusBar } from '../../commons/utils/StatusBar';
+import image from '@ohos.multimedia.image';
+import { fileIo, fileUri } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
 @Entry
 @ComponentV2
 struct Page {
-  @Local currentAreaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => {
+  @Local localSnapshot: image.PixelMap | ResourceStr = ''
+  @Local localAreaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => {
     return new AreaHeight(0, 0)
   })!
 
+  async saveImage() {
+    //组件截图=>得到一种 pixelMap的格式
+    const snapshot = await componentSnapshot.getSync('QR1')
+    //转化为二进制数据存入沙箱
+    // 图片选择器
+    const imagePacker = image.createImagePacker()
+    //转化为二进制
+    const arrayBuffer = await imagePacker.packToData(
+      snapshot,
+      {
+        format: 'image/jpeg',
+        quality: 98
+      })
+    //得到全局的context
+    const context = this.getUIContext().getHostContext()
+    //生成响应的缓存目录
+    const imagePath = context?.cacheDir! + Date.now() + '.jpeg'
+    //生成文件专属ID
+    const fileID = fileIo.openSync(imagePath, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE).fd
+    //执行写入和关闭
+    fileIo.write(fileID, arrayBuffer)
+    fileIo.close(fileID)
+    //写入相册
+    //获取完整的图片路径
+    const uri = fileUri.getUriFromPath(imagePath)
+    //创建图片改变请求
+    const imageChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, uri)
+    //请求导入context
+    const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context)
+    //
+    await phAccessHelper.applyChanges(imageChangeRequest)
 
+    this.localSnapshot = snapshot
+
+    promptAction.openToast({
+      message: "save to alum was success "
+    })
+  }
 
   build() {
     Column() {
@@ -70,15 +111,33 @@ struct Page {
           statusBarContentColor: "#ffff00"
         })
       })
+      Column() {
+        QRCode('1289746201').id('QR1')
+        //安全控件
+        SaveButton({
+          icon: SaveIconStyle.FULL_FILLED,
+          text: SaveDescription.SAVE_IMAGE,
+          buttonType: ButtonType.Normal
+        }).onClick((event, res) => {
+          //租价截图
+          if (res === SaveButtonOnClickResult.SUCCESS) {
+            this.saveImage()
+          }
+        })
+      }
+
+      Row() {
+        Image(this.localSnapshot)
+      }.width('100%')
 
     }
     .height('100%')
     .width('100%')
     .padding({
-      top: this.currentAreaHeight.voidAreaTopHeight,
-      bottom: this.currentAreaHeight.voidAreaBottomHeight
+      top: this.localAreaHeight.voidAreaTopHeight,
+      bottom: this.localAreaHeight.voidAreaBottomHeight
     })
-
     .backgroundColor(Color.Orange)
+    .id('setShare')
   }
 }
