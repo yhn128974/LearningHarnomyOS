@@ -3,6 +3,8 @@ import { HcSearchBox } from "../../commons/components/HcSearchBox"
 import { Auth, author } from "../../commons/utils/Author"
 import { HomeCategory } from "./comps/HomeCategory"
 import { promptAction, PromptAction } from "@kit.ArkUI"
+import { tracking } from "../../commons/utils/Tarcking"
+import { navPathStack } from "../../commons/utils"
 
 
 @ComponentV2
@@ -24,6 +26,11 @@ export struct HomePage {
     }
   }
 
+  aboutToAppear(): void {
+    //上来上报一次偏好
+    tracking.report(true)
+  }
+
   build() {
     Column() {
       Row({ space: 16 }) {
@@ -41,7 +48,14 @@ export struct HomePage {
         Blank()
         // TODO 搜索组件
         HcSearchBox({
-          layoutWeightValue: 1
+          layoutWeightValue: 1,
+          onSearch: () => {
+
+            navPathStack.pushPath({
+              name: "SearchPage"
+            })
+
+          }
         })
 
         //TODO 打开组件

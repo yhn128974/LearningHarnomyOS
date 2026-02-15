@@ -5,8 +5,6 @@ import { componentSnapshot, promptAction } from "@kit.ArkUI"
 import { image } from "@kit.ImageKit"
 import { fileIo, fileUri } from "@kit.CoreFileKit"
 import { photoAccessHelper } from "@kit.MediaLibraryKit"
-
-import { JSON } from "@kit.ArkTS"
 import { apiGetQuesListDetail } from "../../../commons/utils/http/api"
 import { navPathStack } from "../../../commons/utils"
 import { QuestionPageParams } from "../../../models/QuestionPageParams"

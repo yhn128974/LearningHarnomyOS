@@ -10,3 +10,9 @@ export interface QuestionDetail extends QuestionItem {
   /* 所属模块 */
   stage: string[]
 }
+
+export interface TimeItem {
+  questionId: string
+  startTime: number
+  endTime: number
+}

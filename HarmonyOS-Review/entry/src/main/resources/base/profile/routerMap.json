@@ -14,6 +14,11 @@
       "name": "WebPage",
       "pageSourceFile": "src/main/ets/pages/web/WebPage.ets",
       "buildFunction": "WebBuilder"
+    },
+    {
+      "name": "SearchPage",
+      "pageSourceFile": "src/main/ets/pages/search/index.ets",
+      "buildFunction": "SearchBuilder"
     }
   ]
 }

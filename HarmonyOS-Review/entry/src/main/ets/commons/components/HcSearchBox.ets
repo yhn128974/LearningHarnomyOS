@@ -6,6 +6,8 @@ export struct HcSearchBox {
   @Param phColor: ResourceColor = $r('app.color.common_gray_02')
   @Param bgColor: ResourceColor = $r('app.color.common_gray_border')
   @Param layoutWeightValue: number = 0
+  @Event onSearch: () => void = () => {
+  }
 
   build() {
     Row({ space: 4 }) {
@@ -23,5 +25,8 @@ export struct HcSearchBox {
     .borderRadius(this.boxHeight / 2)
     .justifyContent(FlexAlign.Center)
     .layoutWeight(this.layoutWeightValue)
+    .onClick(() => {
+      this.onSearch()
+    })
   }
 }

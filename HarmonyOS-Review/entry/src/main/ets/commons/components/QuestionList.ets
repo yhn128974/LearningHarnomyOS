@@ -6,14 +6,13 @@ import { QuestionPageParams } from "../../models/QuestionPageParams";
 
 @ComponentV2
 export struct QuestionList {
-  //
+  @Param keyword: string = ''
   @Param index: number = 0
   @Param currentIndexId: number = 0
   //
   @Param typeId: number = 0;
   @Local page: number = 1
   @Param sort: SortType = SortType.Default
-  // @Param keyword: string = ''
   //
   @Local isRefreshing: boolean = false
   @Local isFinish: boolean = false
@@ -44,12 +43,11 @@ export struct QuestionList {
 
   aboutToAppear(): void {
     this.onload()
-
   }
 
   async onload() {
     try {
-      const res = await getQuestList(this.typeId, this.page, this.sort)
+      const res = await getQuestList(this.typeId, this.page, this.sort, this.keyword)
       this.list.push(...res.rows)
       this.isLoading = false
       if (this.list.length >= res.total) {
@@ -63,10 +61,11 @@ export struct QuestionList {
 
   }
 
+  @Monitor('keyword')
   async onRefresh() {
     try {
       this.page = 1
-      const res = await getQuestList(this.typeId, this.page, this.sort)
+      const res = await getQuestList(this.typeId, this.page, this.sort, this.keyword)
       this.list = res.rows
       this.isRefreshing = false
 

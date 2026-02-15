@@ -8,9 +8,8 @@ import { JSON } from '@kit.ArkTS'
 import { webview } from '@kit.ArkWeb'
 import { QuestionPageParams } from '../../models/QuestionPageParams'
 import { QuestionShareDialog } from './components/QuestionShareDialog'
-import { image } from '@kit.ImageKit'
-import { fileIo, fileUri } from '@kit.CoreFileKit'
-import { photoAccessHelper } from '@kit.MediaLibraryKit'
+import { tracking } from '../../commons/utils/Tarcking'
+
 
 //
 class TestObj {
@@ -24,7 +23,7 @@ class TestObj {
 
 @ComponentV2
 export struct QuestionPage {
-
+  @Local startTime: number = Date.now()
   @Local areaHeight: AreaHeight = AppStorageV2.connect(AreaHeight, () => new AreaHeight(0, 0))!
   @Local initializeItem: QuestionItem = {} as QuestionItem
   @Local currentList: QuestionItem[] = []
@@ -90,8 +89,6 @@ export struct QuestionPage {
 
   //
   async aboutToAppear() {
-
-
     // get param from last page
     const param = navPathStack.getParamByName('QuestionPage').pop() as QuestionPageParams
     if (param) {
@@ -108,18 +105,14 @@ export struct QuestionPage {
   async getCurrentQuestionDetail(id: string) {
     //open customDialog
     this.dialog.open()
-
     if (this.currentQuestionDetailList.findIndex((item) => {
       return item.id.toString() === id
     }) !== -1) {
-
       let index = this.currentQuestionDetailList.findIndex((item) => {
         return item.id.toString() === id
       })
       this.currentQuestionDetail = this.currentQuestionDetailList[index]
-
     } else {
-
       //
       try {
         this.currentQuestionDetail = await apiGetQuesListDetail(id)
@@ -163,8 +156,6 @@ export struct QuestionPage {
     }
     .width(108)
   }
-
-
 
   build() {
     //必须用NavDestination包裹
@@ -232,10 +223,14 @@ export struct QuestionPage {
               .fontColor(this.currentIndex > 0 ? $r('app.color.common_gray_03') : $r('app.color.common_gray_01'))
 
           }
-          .onClick(() => {
+          .onClick(async () => {
             if (this.currentIndex > 0) {
               this.currentIndex--
-              this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())
+              await this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())
+              //记录学习时间
+              tracking.record(this.startTime, Date.now(), this.currentQuestionDetail.id.toString())
+              //
+              this.startTime = Date.now()
             } else {
               promptAction.openToast({
                 message: "no more question"
@@ -254,10 +249,14 @@ export struct QuestionPage {
               .aspectRatio(1)
               .fillColor($r('app.color.common_gray_03'))
           }
-          .onClick(() => {
+          .onClick(async () => {
             if (this.currentIndex < this.currentList.length - 1) {
               this.currentIndex++
-              this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())
+              await this.getCurrentQuestionDetail(this.currentList[this.currentIndex].id.toString())
+              //记录学习时间
+              tracking.record(this.startTime, Date.now(), this.currentQuestionDetail.id.toString())
+              //
+              this.startTime = Date.now()
             } else {
               promptAction.openToast({
                 message: "no more question"
@@ -274,7 +273,13 @@ export struct QuestionPage {
       .padding({ bottom: this.areaHeight.voidAreaTopHeight })
     }
     .hideTitleBar(true)
-
+    .onShown(() => {
+      this.startTime = Date.now() //
+    })
+    .onHidden(() => {
+      tracking.record(this.startTime, Date.now(), this.currentQuestionDetail.id.toString())
+      tracking.report()
+    })
   }
 }
 
