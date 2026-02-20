@@ -19,6 +19,21 @@
       "name": "SearchPage",
       "pageSourceFile": "src/main/ets/pages/search/index.ets",
       "buildFunction": "SearchBuilder"
+    },
+    {
+      "name": "ClockInPage",
+      "pageSourceFile": "src/main/ets/pages/ClockIn/ClockInPage.ets",
+      "buildFunction": "ClockInPageBuilder"
+    },
+    {
+      "name": "WordPage",
+      "pageSourceFile": "src/main/ets/pages/mine/WordPage.ets",
+      "buildFunction": "WordBuilder"
+    },
+    {
+      "name": "AudioPage",
+      "pageSourceFile": "src/main/ets/pages/mine/AudioPage.ets",
+      "buildFunction": "AudioBuilder"
     }
   ]
 }

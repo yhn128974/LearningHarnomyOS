@@ -5,10 +5,13 @@ import { HomeCategory } from "./comps/HomeCategory"
 import { promptAction, PromptAction } from "@kit.ArkUI"
 import { tracking } from "../../commons/utils/Tarcking"
 import { navPathStack } from "../../commons/utils"
+import { UserModel } from "../../models/User"
+import { requestClockIn } from "../../commons/utils/clockIn"
 
 
 @ComponentV2
 export struct HomePage {
+  user:UserModel=author.getUserInfo()
   // @StorageProp('topHeight') topHeight: number = 0
 
   //
@@ -60,7 +63,9 @@ export struct HomePage {
 
         //TODO 打开组件
         HcClockIn({
-          clockInCount: 3
+          clockInCount: this.user.clockinNumbers
+        }).onClick(() => {
+          requestClockIn()
         })
       }
       .padding({ left: 16, right: 16 })

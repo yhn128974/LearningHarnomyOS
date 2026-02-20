@@ -3,6 +3,7 @@ import { AppStorageV2 } from "@kit.ArkUI"
 import { navPathStack } from "../../commons/utils"
 import { SearchHistory } from "./comp/SearchHistory"
 import { QuestionList } from "../../commons/components/QuestionList"
+import { history } from "../../commons/utils/History"
 
 
 @ComponentV2
@@ -25,6 +26,9 @@ struct SearchPage {
               this.keyword = value
               if (this.keyword) {
                 this.isSearch = true
+                //存储搜索历史的键
+                history.setItem(this.keyword)
+
               }
             })
             .onChange(value => {

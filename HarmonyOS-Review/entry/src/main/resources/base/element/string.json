@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "Interview Pass"
+    },
+    {
+      "name": "permission_microphone",
+      "value": "录音功能申请麦克风权限"
     }
   ]
 }

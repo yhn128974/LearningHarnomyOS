@@ -4,6 +4,7 @@ import { AreaHeight, UserModel } from '../../models'
 import { statusBar } from '../../commons/utils/StatusBar'
 import { formatTime, fullScreenController, navPathStack } from '../../commons/utils'
 import { author } from '../../commons/utils/Author'
+import { requestClockIn } from '../../commons/utils/clockIn'
 
 interface Nav {
   icon: ResourceStr
@@ -129,7 +130,13 @@ export struct MinePage {
               })
             })
         }
+
+        //打卡组件
         HcClockIn({ clockInCount: this.currentUser.clockinNumbers })
+          .onClick(() => {
+            requestClockIn()
+          })
+
       }
       .width('100%')
       .height(100)
@@ -170,10 +177,22 @@ export struct MinePage {
         this.toolsBuilder({
           icon: $r('app.media.ic_mine_notes'), name: '开发常用词', onClick: () => {
             // TODO
+            author.checkAuth({
+              name: "WordPage",
+
+            })
           }
         })
         this.toolsBuilder({ icon: $r('app.media.ic_mine_ai'), name: '面通AI' })
-        this.toolsBuilder({ icon: $r('app.media.ic_mine_invite'), name: '推荐分享' })
+        this.toolsBuilder({
+          icon: $r('app.media.ic_mine_invite'), name: '面试录音',
+          onClick: () => {
+            author.checkAuth({
+              name: "AudioPage"
+            })
+          }
+        })
+
         this.toolsBuilder({ icon: $r('app.media.ic_mine_file'), name: '意见反馈' })
         this.toolsBuilder({ icon: $r('app.media.ic_mine_info'), name: '关于我们' })
         this.toolsBuilder({
