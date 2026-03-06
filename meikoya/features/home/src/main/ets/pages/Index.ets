@@ -1,7 +1,7 @@
 @Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
+@ComponentV2
+export struct HomeView {
+  @Local message: string = 'Hello World';
 
   build() {
     Row() {
