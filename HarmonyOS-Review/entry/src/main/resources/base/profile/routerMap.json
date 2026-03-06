@@ -34,6 +34,11 @@
       "name": "AudioPage",
       "pageSourceFile": "src/main/ets/pages/mine/AudioPage.ets",
       "buildFunction": "AudioBuilder"
+    },
+    {
+      "name": "AIPage",
+      "pageSourceFile": "src/main/ets/pages/mine/AIPage.ets",
+      "buildFunction": "AIBuilder"
     }
   ]
 }

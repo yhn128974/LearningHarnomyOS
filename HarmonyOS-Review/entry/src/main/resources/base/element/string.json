@@ -15,6 +15,14 @@
     {
       "name": "permission_microphone",
       "value": "录音功能申请麦克风权限"
+    },
+    {
+      "name": "DeepSeepKey",
+      "value": "dtw9_OnNBZbMDDKedzw2r8XAjaO-1QiODbDn4cgp5dEX7uZJOo5FZSLWR5Gr6xuSYhu8Kphom_uxlt28-2N2zQ"
+    },
+    {
+      "name": "DeepSeepUrl",
+      "value": "https://api.modelarts-maas.com/v2/chat/completions"
     }
   ]
 }
