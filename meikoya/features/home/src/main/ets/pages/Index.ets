@@ -1,6 +1,6 @@
 @Entry
 @ComponentV2
-export struct HomeView {
+export struct Index {
   @Local message: string = 'Hello World';
 
   build() {
