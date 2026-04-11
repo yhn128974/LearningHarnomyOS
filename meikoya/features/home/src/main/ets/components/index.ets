@@ -1,3 +1,3 @@
 export * from './HDMDiscountGoods'
 
-export * from './HDMGoods'
+export * from 'basic/src/main/ets/components/HDMGoods'

@@ -243,9 +243,14 @@ export struct HomeView {
 
   @Builder
   RefreshBuilder() {
-    HDMLoading({
-      imageWith: 100
-    })
+    if (this.refresh) {
+      HDMLoading({
+        imageWith: 100
+      })
+    } else {
+      Row()
+    }
+
   }
 
   build() {

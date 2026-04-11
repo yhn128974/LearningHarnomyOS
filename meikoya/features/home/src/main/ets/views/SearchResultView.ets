@@ -5,7 +5,7 @@ import { AppStorageV2, promptAction } from '@kit.ArkUI'
 import { HDMGoods } from '../components'
 import { JSON } from '@kit.ArkTS'
 import { getSearchResultAPI } from '../api/search'
-import { SearchParams, SearchRouterParam, SortCompAttr } from '../viewmodels/search_result'
+import { SearchParams, SearchRouterParam, SortCompAttr, SortField, SortMethod } from '../viewmodels/search_result'
 
 
 @HMRouter({ pageUrl: PAGE_PATH.SEARCH_RESULT_PAGE })
@@ -57,7 +57,21 @@ export struct SearchResultView {
 
     // 第三种方案: 拦截器中统一处理
     const result = await getSearchResultAPI(this.params)
-    this.list = result.pageData.items
+    this.list.push(...result.pageData.items)
+    //
+    if (this.params.page >= result.pageData.pages) {
+      this.finished = true
+    } else {
+      this.params.page++
+    }
+    
+  }
+
+  onRefresh() {
+    this.params.page = 1
+    this.list = [] // 重新赋值为空
+    this.finished = false
+    this.getSearchResult()
   }
 
   @Builder
@@ -111,7 +125,7 @@ export struct SearchResultView {
             this.list = [] // 重新赋值为空
             this.finished = false
             this.getSearchResult()
-          
+
           })
       }
       .padding({ top: this.safeArea.topHeight, right: 16 })
@@ -131,6 +145,11 @@ export struct SearchResultView {
             sortMethod: this.params.sortMethod,
             // onSortChange: (field: SortField, method: SortMethod) => {
             // }
+            onSortChange: (field: SortField, method: SortMethod) => {
+              this.params.sortField = field // 相当于重新加载数据 排序字段
+              this.params.sortMethod = method // 排序方式
+              this.onRefresh()
+            }
           })
         })
         Text('筛选')

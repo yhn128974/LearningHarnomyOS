@@ -20,3 +20,18 @@ export interface CategoryItemChild {
   name: string
   picture: ResourceStr
 }
+
+// 猜你喜欢的参数
+export interface GuessParams {
+  page: number
+  pageSize: number
+}
+
+// 搜索和猜你喜欢的返回类型
+export interface GoodsItems {
+  counts: number;
+  items: HDMGoodsItem[];
+  page: number;
+  pages: number;
+  pageSize: number;
+}
