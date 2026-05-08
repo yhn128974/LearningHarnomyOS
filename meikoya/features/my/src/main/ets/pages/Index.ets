@@ -1,5 +1,5 @@
-import { AppSafeArea, HDMGuessGoods, HDMNavCol, PAGE_PATH } from "basic"
-import { AppStorageV2 } from "@kit.ArkUI"
+import { AppSafeArea, AppUser, HDMGuessGoods, HDMNavCol, PAGE_PATH } from "basic"
+import { AppStorageV2, PersistenceV2 } from "@kit.ArkUI"
 import { HMRouterMgr } from "@hadss/hmrouter"
 
 
@@ -7,6 +7,9 @@ import { HMRouterMgr } from "@hadss/hmrouter"
 @ComponentV2
 export struct MyView {
   safeArea: AppSafeArea = AppStorageV2.connect(AppSafeArea, () => new AppSafeArea())!
+  // appUser: AppUser = AppStorageV2.connect(AppUser, () => new AppUser())!
+
+  appUser: AppUser = PersistenceV2.connect(AppUser, () => new AppUser())!
 
   build() {
     Column() {
@@ -16,12 +19,14 @@ export struct MyView {
           Column() {
             Row() {
               Blank()
-              if (true) {
+              if (this.appUser.user.token) {
                 Image($r('[basic].media.ic_public_settings'))
                   .width(24)
                   .aspectRatio(1)
                   .onClick(() => {
-
+                    HMRouterMgr.push({
+                      pageUrl: PAGE_PATH.SETTING_PAGE
+                    })
                   })
               }
 
@@ -32,15 +37,16 @@ export struct MyView {
 
             Row({ space: 16 }) {
               // 头像
-              Image($r('app.media.ic_user_avatar'))
+              Image(this.appUser.user.avatar ?? $r('app.media.ic_user_avatar'))
                 .width(40)
                 .aspectRatio(1)
                 .borderRadius(20)
-              if (true) {
-                Text("张三")
+              if (this.appUser.user.token) {
+                Text(this.appUser.user.nickname)
                   .fontColor($r('[basic].color.black'))
                   .fontWeight(500)
               } else {
+
                 Text('立即登录')
                   .fontColor($r('[basic].color.black'))
                   .fontWeight(500)
@@ -101,6 +107,11 @@ export struct MyView {
 
               GridCol() {
                 HDMNavCol({ icon: $r('app.media.ic_user_service'), text: '我的客服', color: $r('[basic].color.text') })
+                  .onClick(() => {
+                    HMRouterMgr.push({
+                      pageUrl: PAGE_PATH.AI_CUSTOMER_PAGE
+                    })
+                  })
               }
             }
             .width('100%')

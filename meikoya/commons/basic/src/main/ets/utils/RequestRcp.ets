@@ -1,7 +1,9 @@
 import { rcp } from '@kit.RemoteCommunicationKit'
-import { GlobalVariable } from '../constants'
-import { ResponseData } from '../viewmodels'
+import { GlobalVariable, PAGE_PATH } from '../constants'
+import { HDMUser, ResponseData } from '../viewmodels'
 import { promptAction } from '@kit.ArkUI'
+import { auth } from '.'
+import { HMRouterMgr } from '@hadss/hmrouter'
 
 
 class RcpRequestInterceptor implements rcp.Interceptor {
@@ -12,9 +14,17 @@ class RcpRequestInterceptor implements rcp.Interceptor {
     // throw new Error("Method not implemented.");
     // axios返回类型无法更改！！！
     // 请求拦截器
+
+
     if (typeof context.request.content === 'object') {
       context.request.content =
         JSON.parse(JSON.stringify(context.request.content).replace(/__ob_/g, "")) as rcp.RequestContent
+    }
+
+    //  注入token
+    const user = auth.getUser()
+    if (user.token) {
+      context.request.headers!.authorization = `Bearer ${user.token}`
     }
 
     // TODO 注入token
@@ -32,10 +42,15 @@ class RcpResponseInterceptor implements rcp.Interceptor {
     // axios返回类型无法更改！！！
     // 请求拦截器
     const res = await next.handle(context) // 将结构返回下一个执行链
+
     // TODO 处理401异常问题
-    // if(res.statusCode === 401) {
-    //
-    // }
+    if (res.statusCode === 401) {
+      auth.setUser({} as HDMUser)
+      HMRouterMgr.push({
+        pageUrl: PAGE_PATH.LOGIN_PAGE
+      })
+    }
+
     return res
   }
 }

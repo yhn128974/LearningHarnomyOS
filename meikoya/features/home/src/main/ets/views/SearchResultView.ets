@@ -164,8 +164,6 @@ export struct SearchResultView {
 
       //搜索展示区域
       WaterFlow({ scroller: this.scroller, footer: this.getFootBuilder() }) {
-
-
         // LazyForEach(this.lazyDataSource, (item: HDMGoodsItem) => {
         //   FlowItem() {
         //     HDMGoods({ goods: item, smallImage: true })
@@ -190,7 +188,6 @@ export struct SearchResultView {
           lg: '1fr 1fr 1fr 1fr'
         })
           .getValue(this.breakPointClass.breakPoint)
-
       )
       .columnsGap(0.5)
       .rowsGap(0.5)

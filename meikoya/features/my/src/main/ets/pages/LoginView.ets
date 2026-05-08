@@ -1,8 +1,9 @@
-import { AppSafeArea, HDMNavBar, PAGE_PATH } from 'basic'
+import { AppSafeArea, auth, HDMNavBar, PAGE_PATH } from 'basic'
 import { AppStorageV2, promptAction } from '@kit.ArkUI'
 
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter'
 import { LoginFormModel } from '../viewmodels'
+import { loginAPI } from '../apis'
 
 @Preview
 @HMRouter({ pageUrl: PAGE_PATH.LOGIN_PAGE })
@@ -14,12 +15,13 @@ export struct LoginView {
     account: '13200000005',
     password: '123456'
   })
+
   @Local agree: boolean = false
   safeArea: AppSafeArea = AppStorageV2.connect(AppSafeArea, () => new AppSafeArea())!
 
   @Monitor("loginForm.account")
   updateAccount(monitor: IMonitor) {
-    // promptAction.showToast({ message: monitor.value()?.before as string })
+    promptAction.showToast({ message: monitor.value()?.before as string })
   }
 
   @Computed
@@ -34,6 +36,10 @@ export struct LoginView {
   async onSubmit() {
     if (!this.agree) {
       return promptAction.showToast({ message: '请先勾选协议' })
+    } else {
+      const user = await loginAPI(this.loginForm)
+      await auth.setUser(user) //持久化用户信息
+      HMRouterMgr.pop()
     }
   }
 
@@ -64,11 +70,11 @@ export struct LoginView {
           .width('100%')
           .fontWeight(500)
           .margin({ bottom: 10 })
-        TextInput({ placeholder: '请输入账号', text: $$this.loginForm.account })
+        TextInput({ placeholder: '请输入账号', text: this.loginForm.account!! })
           .placeholderColor($r('[basic].color.gray'))
           .placeholderFont({ size: 14 })
           .form()
-        TextInput({ placeholder: '请输入密码', text: $$this.loginForm.password })
+        TextInput({ placeholder: '请输入密码', text: this.loginForm.password!! })
           .type(InputType.Password)
           .showPasswordIcon(false)
           .placeholderColor($r('[basic].color.gray'))

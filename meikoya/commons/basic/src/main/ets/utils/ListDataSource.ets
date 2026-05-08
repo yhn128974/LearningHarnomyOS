@@ -10,6 +10,7 @@ export class ListDataSource<T> implements IDataSource {
     return this.originArr[index]
   }
 
+
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) === -1) {
       this.listeners.push(listener)

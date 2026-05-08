@@ -8,3 +8,8 @@ export * from './HDMGoods'
 
 export * from './HDMGuessGoods'
 
+export * from './HDMCell'
+
+export * from './HDMCellGroup'
+
+export * from './HDMSku'

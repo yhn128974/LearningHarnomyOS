@@ -6,8 +6,10 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@abner/log": "^1.0.5"
+    "@abner/log": "^1.0.5",
   },
-  "devDependencies": {},
+  "devDependencies": {
+
+  },
   "dynamicDependencies": {}
 }
